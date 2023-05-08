@@ -1,0 +1,47 @@
+
+body{
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    font-family: sans-serif;
+}
+
+
+header{
+    background-color: #38B6FF;
+    color: white;
+    text-align: center;
+    font-size: x-large;
+    border: solid 0 #38B6FF;
+    margin: 0;
+  
+}
+
+header >h1 {
+
+    margin:0;
+    border-top: 10px solid #38B6FF ;
+    border-bottom: 10px solid #38B6FF ;
+    
+}
+
+
+#content{
+    min-width: 965px;
+    margin-left: 20%;
+    margin-right: 20%;
+
+}
+
+footer >p{
+
+    text-align: center;
+    background-color: #38B6FF;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    
+
+}
