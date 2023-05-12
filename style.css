@@ -1,88 +1,135 @@
 :root {
-  --accent: #38b6ff;
+	--accent: #38b6ff;
+	--gray: #cdced2;
+	--dark-gray: #929294;
 }
 
 body {
-  margin-top: 0;
-  margin-left: 0;
-  margin-right: 0;
-  font-family: sans-serif;
+	margin-top: 0;
+	margin-left: 0;
+	margin-right: 0;
+	font-family: sans-serif;
 }
 
 header {
-  text-align: center;
-  background-color: var(--accent);
-  color: white;
-  font-size: x-large;
-  border: solid 0 var(--accent);
-  margin: 0;
-  padding: 10px 0px;
+	text-align: center;
+	background: var(--accent);
+	color: white;
+	font-size: x-large;
+	border: solid 0 var(--accent);
+	margin: 0;
+	padding: 10px 0px;
 }
 
 header > h1 {
-  text-align: center;
-  font-style: italic;
-  margin: 0;
+	text-align: center;
+	font-style: italic;
+	margin: 0;
+}
+
+#home-link {
+	color: white;
+	text-decoration: none;
 }
 
 #content {
-  min-width: 965px;
-  margin-left: 20%;
-  margin-right: 20%;
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+#calendar-container {
+	text-align: center;
+}
+
+#month-select {
+	margin-top: 10px;
+	background: var(--gray);
+	border: 2px solid black;
+	font-size: 200%;
+}
+
+.calendar-move {
+	font-size: 100%;
+	width: 10%;
+	border: none;
+	background: var(--gray);
+	transition: background 0.2s;
+}
+
+.calendar-move:hover {
+	background: var(--dark-gray);
+}
+
+#calendar {
+	width: 100%;
+}
+
+.calendar-cell, .calendar-cell-disabled, .calendar-day {
+	background: var(--gray);
+	width: 14.28571429%;
+	height: 50px;
+}
+
+.calendar-cell-disabled {
+	background: var(--dark-gray);
+}
+
+.calendar-day {
+	background: white;
 }
 
 footer > p {
-  text-align: center;
-  background-color: var(--accent);
-  color: white;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  margin: 0;
+	text-align: center;
+	background: var(--accent);
+	color: white;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	margin: 0;
 }
 
 #day-container {
-  margin-top: 10%;
-  display: inline-block;
+	margin-top: 10%;
+	display: inline-block;
 }
 
 .day {
-  font-size: 60px;
-  list-style-type: none;
-  display: inline-flex;
+	font-size: 60px;
+	list-style-type: none;
+	display: inline-flex;
 }
 
 .box {
-  max-width: 1300px;
-  min-height: 300px;
-  background: rgb(215, 215, 215);
-  margin: 0 auto;
-  margin-top: 100px;
-  padding-bottom: 50px;
+	max-width: 1300px;
+	min-height: 300px;
+	background: rgb(215, 215, 215);
+	margin: 0 auto;
+	margin-top: 100px;
+	padding-bottom: 50px;
 }
 
 .boxTitle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--accent);
-  width: 100%;
-  height: 40px;
-  text-align: center;
-  font-size: 1.2em;
-  font-weight: 600;
-  box-shadow: inset 0 0 0 2px black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--accent);
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: 600;
+	box-shadow: inset 0 0 0 2px black;
 }
 
 .adminForm {
-  margin-top: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+	margin-top: 20px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 #addItem {
-  max-width: 400px;
-  height: 30px;
-  width: 100%;
+	max-width: 400px;
+	height: 30px;
+	width: 100%;
 }
