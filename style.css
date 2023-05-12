@@ -3,6 +3,8 @@ body {
   margin-left: 0;
   margin-right: 0;
   font-family: sans-serif;
+  min-width: 965px;
+
 }
 
 header {
@@ -21,7 +23,6 @@ header > h1 {
 }
 
 #content {
-  min-width: 965px;
   margin-left: 20%;
   margin-right: 20%;
 }
@@ -79,4 +80,106 @@ footer > p {
   max-width: 400px;
   height: 30px;
   width: 100%;
+}
+
+
+.loginBox{
+  display: grid;
+  /* align-items: center;
+  justify-content: center;
+  flex-direction: row;  */
+  grid-template-columns: 50% 50%;
+  /* justify-content: stretch; */
+
+
+  max-width: 500px;
+  min-height: 400px;
+  background: rgb(215, 215, 215);
+  margin: 0 auto;
+  margin-top: 100px;
+  /* padding-bottom: 50px; */
+
+  grid-template-areas: 
+    'topleft topright'
+    'iparea iparea'
+    'lginbut lginbut';
+}
+
+
+
+#userButton{
+
+  background-color: rgb(102, 181, 218);
+  /* width:fit-content; */
+  width: auto;
+  height: 60px;
+  text-align: center;
+  grid-area: topleft;
+
+}
+
+#userButton > button{
+  display: block;
+  width:100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  font-family: sans-serif;
+  font-size: x-large;
+
+}
+#userButton > button:active{
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#adminButton
+{
+  background-color: #344B59;
+  /* width:fit-content; */
+  width: auto;
+  height: 60px;
+  text-align: center;
+  grid-area: topright;
+}
+#adminButton > button{
+  display: block;
+  width:100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  font-family: sans-serif;
+  font-size: x-large;
+}
+
+.inputfeilds{
+
+
+  grid-area: iparea;
+  padding-left: 20%;
+}
+
+.lgbutton{
+  grid-area: lginbut;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lgbutton > button{
+  position: relative;
+  display: block;
+  background-color: rgb(43, 211, 85);
+  color: white;
+  padding:20px 200px;
+  font-family: sans-serif;
+  font-size: x-large;
+  font-weight: bold;
+  max-height: 90px;
+
+}
+
+.lgbutton > button:active{
+
+  background-color: rgb(43, 211, 85);
+
 }
