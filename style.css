@@ -1,3 +1,7 @@
+:root {
+  --accent: #38b6ff;
+}
+
 body {
   margin-top: 0;
   margin-left: 0;
@@ -6,18 +10,19 @@ body {
 }
 
 header {
-  background-color: #38b6ff;
-  color: white;
   text-align: center;
+  background-color: var(--accent);
+  color: white;
   font-size: x-large;
-  border: solid 0 #38b6ff;
+  border: solid 0 var(--accent);
   margin: 0;
+  padding: 10px 0px;
 }
 
 header > h1 {
+  text-align: center;
+  font-style: italic;
   margin: 0;
-  border-top: 10px solid #38b6ff;
-  border-bottom: 10px solid #38b6ff;
 }
 
 #content {
@@ -28,7 +33,7 @@ header > h1 {
 
 footer > p {
   text-align: center;
-  background-color: #38b6ff;
+  background-color: var(--accent);
   color: white;
   position: absolute;
   bottom: 0;
@@ -40,6 +45,7 @@ footer > p {
   margin-top: 10%;
   display: inline-block;
 }
+
 .day {
   font-size: 60px;
   list-style-type: none;
@@ -59,7 +65,7 @@ footer > p {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #38b6ff;
+  background: var(--accent);
   width: 100%;
   height: 40px;
   text-align: center;
