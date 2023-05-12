@@ -48,7 +48,10 @@ footer >p{
 
 #day-container{
     margin-top:10%;
+    display:inline-block;
 }
 .day{
-    font-size: 100px;
+    font-size: 60px;
+    list-style-type: none;
+    display:inline-flex;
 }
