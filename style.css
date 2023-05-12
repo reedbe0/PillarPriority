@@ -45,3 +45,8 @@ footer >p{
     
 
 }
+
+#pillarhomebutton{
+    border: none;
+    border-radius: 0;
+}
