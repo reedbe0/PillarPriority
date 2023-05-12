@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <title>Tweeter</title>
+
+    <!-- This is a 3rd-party stylesheet to make available the font family to be used for this page ("Roboto"). -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+
+    <!-- This 3rd-party stylesheet incorporates SVG icons from Font Awesome: http://fontawesome.com/ -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css" media="screen">
+
+    <script src="index.js" charset="utf-8" defer></script>
+
+  </head>
+
+  <body>
+
+    <header>
+      <!-- The <i> tag below includes the lizard hand icon from Font Awesome.  Do not directly style this element. -->
+      <a href="#"><h1 class="site-title"><i class="far fa-hand-lizard"></i> tweeter</h1></a>
+
+      <nav class="navbar">
+        <ul class="navlist">
+          <li class="navitem navlink active"><a href="#">Home</a></li>
+          <li class="navitem navlink"><a href="#">Trending</a></li>
+          <li class="navitem navlink"><a href="#">People</a></li>
+          <li class="navitem navbar-search">
+            <input type="text" id="navbar-search-input" placeholder="Search...">
+            <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="twit-container">
+
+      <article class="twit">
+        <div class="twit-icon">
+          <!-- The <i> tag below includes the bullhorn icon from Font Awesome.  Do not directly style this element. -->
+          <i class="fas fa-bullhorn"></i>
+        </div>
+        <div class="twit-content">
+          <p class="twit-text">
+            Watching my web dev lecture... This class is so awesome!  Pass the popcorn.
+          </p>
+          <p class="twit-author">
+            <a href="#">CSMajor2021</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="twit">
+        <div class="twit-icon">
+          <!-- The <i> tag below includes the bullhorn icon from Font Awesome.  Do not directly style this element. -->
+          <i class="fas fa-bullhorn"></i>
+        </div>
+        <div class="twit-content">
+          <p class="twit-text">
+            Isn't it great to have baseball back?  Go Beavs!
+          </p>
+          <p class="twit-author">
+            <a href="#">BeaverBeliever</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="twit">
+        <div class="twit-icon">
+          <!-- The <i> tag below includes the bullhorn icon from Font Awesome.  Do not directly style this element. -->
+          <i class="fas fa-bullhorn"></i>
+        </div>
+        <div class="twit-content">
+          <p class="twit-text">
+            A body in motion must remain in motion unless acted upon by an outside force.
+          </p>
+          <p class="twit-author">
+            <a href="#">NewtonRulez</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="twit">
+        <div class="twit-icon">
+          <!-- The <i> tag below includes the bullhorn icon from Font Awesome.  Do not directly style this element. -->
+          <i class="fas fa-bullhorn"></i>
+        </div>
+        <div class="twit-content">
+          <p class="twit-text">
+            Huh?
+          </p>
+          <p class="twit-author">
+            <a href="#">ConfusedTweeterer</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="twit">
+        <div class="twit-icon">
+          <!-- The <i> tag below includes the bullhorn icon from Font Awesome.  Do not directly style this element. -->
+          <i class="fas fa-bullhorn"></i>
+        </div>
+        <div class="twit-content">
+          <p class="twit-text">
+            Why did the calf cross the road?
+          </p>
+          <p class="twit-author">
+            <a href="#">Setup</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="twit">
+        <div class="twit-icon">
+          <!-- The <i> tag below includes the bullhorn icon from Font Awesome.  Do not directly style this element. -->
+          <i class="fas fa-bullhorn"></i>
+        </div>
+        <div class="twit-content">
+          <p class="twit-text">
+            To get to the udder side!
+          </p>
+          <p class="twit-author">
+            <a href="#">Punchline</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="twit">
+        <div class="twit-icon">
+          <!-- The <i> tag below includes the bullhorn icon from Font Awesome.  Do not directly style this element. -->
+          <i class="fas fa-bullhorn"></i>
+        </div>
+        <div class="twit-content">
+          <p class="twit-text">
+            Any questions about flexboxes?
+          </p>
+          <p class="twit-author">
+            <a href="#">Hess</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="twit">
+        <div class="twit-icon">
+          <!-- The <i> tag below includes the bullhorn icon from Font Awesome.  Do not directly style this element. -->
+          <i class="fas fa-bullhorn"></i>
+        </div>
+        <div class="twit-content">
+          <p class="twit-text">
+            Friendly reminder: the tax deadline was extended.  You're welcome.
+          </p>
+          <p class="twit-author">
+            <a href="#">TheIRS</a>
+          </p>
+        </div>
+      </article>
+
+    </main>
+
+    <button type="button" id="create-twit-button"><i class="fas fa-bullhorn"></i></button>
+
+    <div id="modal-backdrop" class="hidden"></div>
+    <div id="create-twit-modal" class="hidden">
+      <div class="modal-dialog">
+
+        <div class="modal-header">
+          <h3>Create a Twit</h3>
+          <button type="button" class="modal-close-button">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="twit-input-element">
+            <label for="twit-text-input">Twit text</label>
+            <textarea id="twit-text-input"></textarea>
+          </div>
+          <div class="twit-input-element">
+            <label for="twit-attribution-input">Author</label>
+            <input type="text" id="twit-attribution-input">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="modal-cancel-button">Cancel</button>
+          <button type="button" class="modal-accept-button">Create Twit</button>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+
+</html>
