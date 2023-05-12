@@ -46,7 +46,9 @@ footer >p{
 
 }
 
-#pillarhomebutton{
-    border: none;
-    border-radius: 0;
+#day-container{
+    margin-top:10%;
+}
+.day{
+    font-size: 100px;
 }
