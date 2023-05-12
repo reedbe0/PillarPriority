@@ -68,6 +68,11 @@ var Calendar = {
 			cell.date = new Date(first.getTime() + (i - first.getDay()) * 86400000);
 			cell.innerText = cell.date.getDate();
 			cell.className = (cell.date.getMonth() == Calendar.month) ? "calendar-cell" : "calendar-cell-disabled";
+			cell.onclick = function(){
+					const fullDate = cell.date.getFullYear() + '/' +(cell.date.getMonth() + 1) + '/' + cell.date.getDate();
+					localStorage.setItem("fullDateClicked", fullDate);
+					location.href = "timeslots.html"
+			}
 		});
 	}
 }
