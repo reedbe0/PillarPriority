@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Admin</title>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <em><a>PILLAR PRIORITY</a></em>
+      </h1>
+    </header>
+    <div class="box">
+      <div class="boxTitle">Available Items</div>
+      <form class="adminForm" onsubmit="test(); return false;">
+        <input type="text" id="addItem" placeholder="Add Item" />
+        <button type="submit">Add</button>
+      </form>
+      <ul id="itemList"></ul>
+    </div>
+  </body>
+  <script>
+    function test() {
+      const addItem = document.getElementById("addItem");
+      const li = document.createElement("li");
+      li.innerHTML = addItem.value;
+
+      const itemList = document.getElementById("itemList");
+      itemList.appendChild(li);
+      addItem.value = "";
+    }
+  </script>
+</html>
