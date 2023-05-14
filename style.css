@@ -161,7 +161,7 @@ footer > p {
 
 #userButton{
 
-  background-color: rgb(102, 181, 218);
+  background-color: #66b5da;
   /* width:fit-content; */
   width: auto;
   height: 60px;
@@ -186,7 +186,7 @@ footer > p {
 
 #adminButton
 {
-  background-color: #344B59;
+  background-color: #344b59;
   /* width:fit-content; */
   width: auto;
   height: 60px;
@@ -203,9 +203,7 @@ footer > p {
   font-size: x-large;
 }
 
-.inputfeilds{
-
-
+.inputfields{
   grid-area: iparea;
   padding-left: 20%;
 }
