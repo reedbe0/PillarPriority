@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang = "en">
 
 <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <title>Calendar</title>
-    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
-
-
-
+    <link rel = "stylesheet" type = "text/css" media = "screen" href = "style.css">
 </head>
 
 <body>
+	<header></header>
 
-    <header>
-        <h1><em>PILLAR  PRIORITY</em></h1>
-    </header>
-
-    <div id="content">
-
-        <h2>Enter calendar here</h2>
-        <p><a href = "index.html">Return to home</a></p>
-        <p>This is a test.</p>
-
+    <div id = "content">
+		<div id = "calendar-container">
+			<div id = "month-select">
+				<button class = "calendar-move" id = "previous-month" onclick = "Calendar.previousMonth()"><</button>
+				<span id = "month-display"></span>
+				<button class = "calendar-move" id = "next-month" onclick = "Calendar.nextMonth()">></button>
+			</div>
+			
+			<table id = "calendar">
+				<tr>
+					<th class = "calendar-day">Sun</th>
+					<th class = "calendar-day">Mon</th>
+					<th class = "calendar-day">Tue</th>
+					<th class = "calendar-day">Wed</th>
+					<th class = "calendar-day">Thu</th>
+					<th class = "calendar-day">Fri</th>
+					<th class = "calendar-day">Sat</th>
+				</tr>
+			</table>
+		</div>
     </div>
-
-    
-
-    <footer>
-        <p> @Team Obelisk</p>
-    </footer>
+	
+	<footer></footer>
 
 </body>
 
-
+<script src = "template.js"></script>
+<script src = "calendar.js"></script>
 
 </html>
  
