@@ -21,3 +21,7 @@ var Calendar = {
 }
 
 Calendar.init();
+
+function printObj(){
+	alert("hello");
+}

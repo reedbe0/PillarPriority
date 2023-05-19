@@ -1,0 +1,23 @@
+{
+	"items" : [
+		{
+			"name": "computer",
+			"timeStart": "8:00",
+			"timeEnd" : "16:00",
+			"available" : "true" 
+		},
+		{
+			"name": "iPad",
+			"timeStart": "10:00",
+			"timeEnd" : "18:00",
+			"available" : "false" 
+		}
+
+
+
+	]
+
+
+
+
+}
