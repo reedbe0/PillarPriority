@@ -27,9 +27,11 @@ Calendar.init();
 // import items from './db.json' assert {type:'json'};
 
 async function getData(file){
-	fetch(file)
-		.then(res => res.json())
-		.then(data => console.log(data))
+	let database = await fetch(file);
+	let items = await database.json();
+	// console.log(items)
+	return items
+
 }
 
 
@@ -53,7 +55,8 @@ function printObj(){
 	// 	]
 	// }
 
-	getData("./db.json");
+	items = getData("./db.json");
+	console.log(items)
 	// var data = require("./db.json")
 	// alert(data.items[0].name)
 	alert("hello");
