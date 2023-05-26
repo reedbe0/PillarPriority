@@ -1,5 +1,7 @@
 const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+// const fs = require("fs")
+// const data = require("./db.json")
 
 var Calendar = {
 	day: new Date().getDate(),
@@ -22,6 +24,38 @@ var Calendar = {
 
 Calendar.init();
 
+// import items from './db.json' assert {type:'json'};
+
+async function getData(file){
+	fetch(file)
+		.then(res => res.json())
+		.then(data => console.log(data))
+}
+
+
 function printObj(){
+	// var obj = JSON.parse(fs.readFileSync('./db.json', 'utf8'));
+	// var temp = data.items[0].name
+	// const data ={
+	// 	"items" : [
+	// 		{
+	// 			"name": "computer",
+	// 			"timeStart": "8:00",
+	// 			"timeEnd" : "16:00",
+	// 			"available" : "true" 
+	// 		},
+	// 		{
+	// 			"name": "iPad",
+	// 			"timeStart": "10:00",
+	// 			"timeEnd" : "18:00",
+	// 			"available" : "false" 
+	// 		}
+	// 	]
+	// }
+
+	getData("./db.json");
+	// var data = require("./db.json")
+	// alert(data.items[0].name)
 	alert("hello");
+
 }
