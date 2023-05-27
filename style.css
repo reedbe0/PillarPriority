@@ -30,10 +30,14 @@ header {
 	padding: 10px 0px;
 }
 
-header > h1 {
+h1 {
 	text-align: center;
-	font-style: italic;
+	font-weight: normal;
+}
+
+header > h1 {
 	margin: 0;
+	font-style: italic;
 }
 
 #home-link {
@@ -69,29 +73,30 @@ header > h1 {
 	background: var(--dark-gray);
 }
 
-#calendar {
+#calendar, #timeslots {
 	width: 100%;
+	table-layout: fixed;
 }
 
-.calendar-cell, .calendar-cell-disabled, .calendar-day {
+.time-cell, .table-label {
 	background: var(--gray);
-	width: 14.28571429%;
 	height: 50px;
 	cursor: pointer;
-	transition: transform 0.2s;
-}
-.calendar-cell:hover {
-	background: var(--accent);
-	transform: scale(1.1, 1.1);
+	transition: background 0.2s;
 }
 
-.calendar-cell-disabled {
+.time-cell:hover {
+	background: var(--accent);
+}
+
+.time-cell[disabled] {
 	background: var(--dark-gray);
 	cursor: not-allowed;
 }
 
-.calendar-day {
+.table-label {
 	background: white;
+	cursor: default;
 }
 
 footer > p {
@@ -150,8 +155,7 @@ footer > p {
 	width: 100%;
 }
 
-
-.loginBox{
+.loginBox {
   display: grid;
   grid-template-columns: 50% 50%;
   max-width: 500px;
@@ -163,8 +167,6 @@ footer > p {
     'inputFields inputFields'
     'loginButton loginButton';
 }
-
-
 
 .loginTabButton {
   background: var(--dark-accent); 
