@@ -20,17 +20,16 @@
         <button type="button" class="modal-Date-button" onclick="window.location.href='calendar.html'">Choose Date</button>
         <button type="button" class="modal-Resource-button">Choose Resource</button>
     </header>
-
+    <script src="timeslots.js"></script>
     <main>
         <h1 id="selectedDate">Selected Day: </h1>
         <script>
             var newContent = localStorage.getItem("fullDateClicked");
             var date = document.createTextNode(localStorage.getItem("fullDateClicked"));
-            selectedDate.appendChild(date)
+            selectedDate.appendChild(date);
+            window.onload = printObj();       
         </script>
         
-        <button type="button" id="testing" onclick="printObj()">Items</button>
-
         <div id="day-container">
             <table id = "day-container">
                 <thead>
@@ -59,8 +58,18 @@
 
             </table>
         </div>
+
+        <div id="items">
+            <h2>Items Available</h2>
+            <table id="itemsList">
+
+
+
+            </table>
+
+        </div>
+
     </main>
 </body>
-<script src="timeslots.js"></script>
 
 <footer></footer>

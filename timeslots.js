@@ -35,30 +35,16 @@ async function getData(file){
 }
 
 
-function printObj(){
-	// var obj = JSON.parse(fs.readFileSync('./db.json', 'utf8'));
-	// var temp = data.items[0].name
-	// const data ={
-	// 	"items" : [
-	// 		{
-	// 			"name": "computer",
-	// 			"timeStart": "8:00",
-	// 			"timeEnd" : "16:00",
-	// 			"available" : "true" 
-	// 		},
-	// 		{
-	// 			"name": "iPad",
-	// 			"timeStart": "10:00",
-	// 			"timeEnd" : "18:00",
-	// 			"available" : "false" 
-	// 		}
-	// 	]
-	// }
-
-	items = getData("./db.json");
-	console.log(items)
-	// var data = require("./db.json")
-	// alert(data.items[0].name)
-	alert("hello");
-
+async function printObj(){
+	var data = await getData("./db.json");
+	console.log(data)
+	console.log(data.items[0])
+	console.log(data.items.length)
+	table = document.getElementById("itemsList");
+	for(var i = 0; i < data.items.length;i++){
+		var node = document.createElement("tr")
+		var textNode = document.createTextNode(data.items[i].name)
+		node.appendChild(textNode)
+		table.appendChild(node)
+	}
 }
