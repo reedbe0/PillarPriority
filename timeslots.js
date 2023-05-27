@@ -1,14 +1,11 @@
-const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
 // const fs = require("fs")
 // const data = require("./db.json")
 
-var Calendar = {
+var Timeslots = {
 	day: new Date().getDate(),
 
-
 	init: function() {
-		var table = document.getElementById("calendar");
+		var table = document.getElementById("timeslots");
 		
 		for(var i = 0; i < 6; i++) {
 			var row = table.appendChild(document.createElement("tr"));
@@ -22,7 +19,7 @@ var Calendar = {
 	},
 }
 
-Calendar.init();
+Timeslots.init();
 
 // import items from './db.json' assert {type:'json'};
 
@@ -48,3 +45,8 @@ async function printObj(){
 		table.appendChild(node)
 	}
 }
+
+var dateData = localStorage.getItem("fullDateClicked");
+if(!dateData) location.replace("calendar.html");
+var date = new Date(dateData);
+selectedDate.innerText += date.display("long");

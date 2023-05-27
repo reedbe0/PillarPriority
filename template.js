@@ -1,5 +1,6 @@
 (function() {
-	document.getElementById("admin").style.display = "none"
+	var admin = document.getElementById("admin");
+	if(admin) admin.style.display = "none"
 
 	var header = document.getElementsByTagName("header")[0];
 	if(header) header.innerHTML = `
@@ -12,16 +13,16 @@
 	`;
 })();
 
-function OnUserPress() {
-	document.getElementById("admin").style.display = "none"
-	document.getElementById("user").style.display = "block"
-	document.getElementById("adminButton").style.backgroundColor = "#344b59"
-	document.getElementById("userButton").style.backgroundColor = "#66b5da"
+function showUserLoginTab() {
+	document.getElementById("userTab").style.display = "";
+	document.getElementById("adminTab").style.display = "none";
+	document.getElementById("userTabButton").classList.add("selected");
+	document.getElementById("adminTabButton").classList.remove("selected");
 }
 
-function OnAdminPress() {
-	document.getElementById("admin").style.display = "block"
-	document.getElementById("user").style.display = "none"
-	document.getElementById("userButton").style.backgroundColor = "#344b59"
-	document.getElementById("adminButton").style.backgroundColor = "#66b5da"
+function showAdminLoginTab() {
+	document.getElementById("userTab").style.display = "none";
+	document.getElementById("adminTab").style.display = "";
+	document.getElementById("userTabButton").classList.remove("selected");
+	document.getElementById("adminTabButton").classList.add("selected");
 }

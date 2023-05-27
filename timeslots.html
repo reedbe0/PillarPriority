@@ -1,61 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
 </html>
 
 <head>
-    <meta charset='utf-8'>
+    <meta charset = 'utf-8'>
     <title>Reserve a Timeslot</title>
-    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <link rel = 'stylesheet' type = 'text/css' media = 'screen' href = 'style.css'>
 
 </head>
 
 <body>
 
-    <header>
-        <h1><em>PILLAR  PRIORITY</em></h1>
-        <li class="navitem navlink active"><a href="#">Home</a></li>
-    </header>
+    <header></header>
 
-    <header>
-        <button type="button" class="modal-Date-button" onclick="window.location.href='calendar.html'">Choose Date</button>
-        <button type="button" class="modal-Resource-button">Choose Resource</button>
-    </header>
-    <script src="timeslots.js"></script>
-    <main>
-        <h1 id="selectedDate">Selected Day: </h1>
-        <script>
-            var newContent = localStorage.getItem("fullDateClicked");
-            var date = document.createTextNode(localStorage.getItem("fullDateClicked"));
-            selectedDate.appendChild(date);
-            window.onload = printObj();       
-        </script>
+    <main id = "content">
+        <h1 id = "selectedDate">Selected Day: </h1>
+        <button type = "button" class onclick = "window.location.href = 'calendar.html'">Back</button><br>
         
-        <div id="day-container">
-            <table id = "day-container">
-                <thead>
-                    <tr>
-                        <th class = "day-container">Sun</th>
-                        <th class = "day-container">Mon</th>
-                        <th class = "day-container">Tue</th>
-                        <th class = "day-container">Wed</th>
-                        <th class = "day-container">Thu</th>
-                        <th class = "day-container">Fri</th>
-                        <th class = "day-container">Sat</th>
-                    </tr>
-                </thead>
+        <button type = "button" id = "testing" onclick = "printObj()">Items</button>
 
-                <tbody>
-                    <tr>
-                        <td class = "calendar-day">18</td>
-                        <td class = "calendar-day">18</td>
-                        <td class = "calendar-day">18</td>
-                        <td class = "calendar-day">18</td>
-                        <td class = "calendar-day">18</td>
-                        <td class = "calendar-day">18</td>
-                        <td class = "calendar-day">18</td>
-                    </tr>
-                </tbody>
-
+        <div id = "day-container">
+            <table id = "timeslots">
+				<tr>
+					<th class = "calendar-day">Sun</th>
+					<th class = "calendar-day">Mon</th>
+					<th class = "calendar-day">Tue</th>
+					<th class = "calendar-day">Wed</th>
+					<th class = "calendar-day">Thu</th>
+					<th class = "calendar-day">Fri</th>
+					<th class = "calendar-day">Sat</th>
+				</tr>
             </table>
         </div>
 
@@ -71,5 +45,9 @@
 
     </main>
 </body>
+
+<script src = "main.js"></script>
+<script src = "template.js"></script>
+<script src = "timeslots.js"></script>
 
 <footer></footer>
