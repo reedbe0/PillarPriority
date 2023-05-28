@@ -58,11 +58,16 @@ async function printObj(){
 	console.log(data.items[0]);
 	console.log(data.items.length);
 	table = document.getElementById("itemsList");
+	fullDate = localStorage.getItem("fullDateClicked");
+	console.log(fullDate)
+	console.log(data.items[0].date)
 	for(var i = 0; i < data.items.length;i++){
-		var node = document.createElement("tr");
-		var textNode = document.createTextNode(data.items[i].name);
-		node.appendChild(textNode);
-		table.appendChild(node);
+		if (fullDate == data.items[i].date){
+			var node = document.createElement("tr");
+			var textNode = document.createTextNode(data.items[i].name);
+			node.appendChild(textNode);
+			table.appendChild(node);
+		}
 	}
 }
 

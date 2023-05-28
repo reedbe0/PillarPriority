@@ -2,12 +2,14 @@
 	"items" : [
 		{
 			"name": "computer",
+			"date": "6/28/23",
 			"timeStart": "8:00",
 			"timeEnd" : "16:00",
 			"available" : "true" 
 		},
 		{
 			"name": "iPad",
+			"date": "6/27/23",
 			"timeStart": "10:00",
 			"timeEnd" : "18:00",
 			"available" : "false" 
