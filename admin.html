@@ -6,85 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Admin</title>
+    <script src="admin.js"></script>
   </head>
   <body>
     <header></header>
 
     <div class="box">
-      <div class="boxTitle">Days Possible For The Reservation </div>
-
-      <ul class="horizontal-list">
-        <li>
-          <input type="checkbox" id="monday" name="days" value="Monday">
-          <label for="monday">Monday</label>
-        </li>
-        <li>
-          <input type="checkbox" id="tuesday" name="days" value="Tuesday">
-          <label for="tuesday">Tuesday</label>
-        </li>
-        <li>
-          <input type="checkbox" id="wednesday" name="days" value="Wednesday">
-          <label for="wednesday">Wednesday</label>
-        </li>
-        <li>
-          <input type="checkbox" id="thursday" name="days" value="Thursday">
-          <label for="thursday">Thursday</label>
-        </li>
-        <li>
-          <input type="checkbox" id="friday" name="days" value="Friday">
-          <label for="friday">Friday</label>
-        </li>
-        <li>
-          <input type="checkbox" id="saturday" name="days" value="Saturday">
-          <label for="saturday">Saturday</label>
-        </li>
-        <li>
-          <input type="checkbox" id="sunday" name="days" value="Sunday">
-          <label for="sunday">Sunday</label>
-        </li>
-      </ul>
-
-    </div>
-
-    <div class="box">
-      <div class="boxTitle">Available Items</div>
-      <form class="adminForm" onsubmit="test(); return false;">
-        <input type="text" id="addItem" placeholder="Add Item" />
-        <button type="submit">Add</button>
+      <div class="boxTitle">Add Items</div>
+      <form class="adminForm" onsubmit="submitForm(event)">
+        <div class="test">
+          <div class="time-selection">
+            <label for="start-time">Start Time:</label>
+            <input type="datetime-local" id="start-time" name="end-time" />
+            <label for="end-time">End Time:</label>
+            <input type="datetime-local" id="end-time" name="end-time" />
+          </div>
+          <div class="name-select">
+            <input type="text" id="addItem" placeholder="Item Name" />
+            <button type="submit">Add</button>
+          </div>
+        </div>
       </form>
-      <ul id="itemList"></ul>
     </div>
 
     <div class="box">
-      <div class="boxTitle"> Start And End Time Of Reservation Hours </div>
-      <div class="time-selection">
-        <label for="start-time">Start Time:</label>
-        <input type="text" id="start-time" name="start-time">
-        <select name="start-time-ampm">
-          <option value="am">AM</option>
-          <option value="pm">PM</option>
-        </select>
-
-        <label for="end-time">End Time:</label>
-        <input type="text" id="end-time" name="end-time">
-        <select name="end-time-ampm">
-          <option value="am">AM</option>
-          <option value="pm">PM</option>
-        </select>
-      </div>
-
+      <div class="boxTitle">Current Items</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Item Name</th>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Availability</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="itemList"></tbody>
+      </table>
     </div>
-	
-	<footer></footer>
+
+    <footer></footer>
   </body>
-  
-  <script src = "main.js"></script>
-  <script src = "template.js"></script>
+
+  <script src="template.js"></script>
 
   <style>
-
     .box {
-      min-height: 0 ;
+      min-height: 0;
     }
     ul.horizontal-list {
       list-style-type: none;
@@ -102,7 +71,7 @@
       justify-content: center;
       align-items: center;
 
-      margin : 10px ;
+      margin: 10px;
     }
 
     .time-selection label {
@@ -113,17 +82,35 @@
       margin-right: 10px;
     }
 
-  </style>
-
-  <script>
-    function test() {
-      const addItem = document.getElementById("addItem");
-      const li = document.createElement("li");
-      li.innerHTML = addItem.value;
-
-      const itemList = document.getElementById("itemList");
-      itemList.appendChild(li);
-      addItem.value = "";
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px;
+      border: 1px solid #ccc;
     }
-  </script>
+
+    th {
+      background-color: #f2f2f2;
+      text-align: left;
+      padding: 10px;
+    }
+
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .name-select {
+      margin: 0 auto;
+      display: flex;
+    }
+
+    .test {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  </style>
 </html>
