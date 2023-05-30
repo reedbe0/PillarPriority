@@ -13,11 +13,14 @@
 	`;
 })();
 
+var tab = 1;
+
 function showUserLoginTab() {
 	document.getElementById("userTab").style.display = "";
 	document.getElementById("adminTab").style.display = "none";
 	document.getElementById("userTabButton").classList.add("selected");
 	document.getElementById("adminTabButton").classList.remove("selected");
+	tab = 1;
 }
 
 function showAdminLoginTab() {
@@ -25,4 +28,26 @@ function showAdminLoginTab() {
 	document.getElementById("adminTab").style.display = "";
 	document.getElementById("userTabButton").classList.remove("selected");
 	document.getElementById("adminTabButton").classList.add("selected");
+	tab = 2;
+}
+
+function login() {
+	fetch("./logindb.json")
+    .then((response) => response.json())
+    .then((data) => {
+		if (tab == 1) {
+			var code_var = document.getElementById('code').value;
+			var email_var = document.getElementById('userEmail').value;
+			if (code_var == 0 || email_var == 0) {
+				console.log("error user, invalid input");
+			}
+			
+		}
+		if (tab == 2) {
+			console.log("admin");
+		}
+	})
+	.catch((error) => {
+		console.error("Error:", error);
+	});
 }

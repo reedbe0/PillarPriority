@@ -1,0 +1,17 @@
+{
+    "user" : [
+        {
+            "4-digit" : "4444",
+            "email" : "test@gmail.com"
+        }
+
+    ],
+
+    "admin" : [
+        {
+            "user" : "test",
+            "password" : "12341"
+        }
+
+    ]
+}
