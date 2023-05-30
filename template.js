@@ -51,3 +51,7 @@ function login() {
 		console.error("Error:", error);
 	});
 }
+
+function loginbtn() {
+	login();
+}
