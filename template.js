@@ -38,7 +38,7 @@ function login() {
 		if (tab == 1) {
 			var code_var = document.getElementById('code').value;
 			var email_var = document.getElementById('userEmail').value;
-			if (code_var == 0 || email_var == 0) {
+			if (code_var == null || email_var == null) {
 				console.log("error user, invalid input");
 			}
 			else {
@@ -53,7 +53,21 @@ function login() {
 			}
 		}
 		if (tab == 2) {
-			console.log("admin");
+			var user_var = document.getElementById('username').value;
+			var pass_var = document.getElementById('adminPass').value;
+			if (user_var == null || pass_var == null) {
+				console.log("error admin, invalid input");
+			}
+			else {
+				console.log("code: " + user_var + " email: " + pass_var);
+			}
+			for(let i = 0; i < data.admin.length; i++){
+				const admin = data.admin[i]
+				if(code_var == admin.user && email_var == admin.password) {
+					console.log("ADMIN LOGIN SUCCESS");
+					window.location.replace('https://reedbe0.github.io/PillarPriority/admin.html');
+				}
+			}
 		}
 	})
 	.catch((error) => {
