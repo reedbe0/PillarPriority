@@ -41,7 +41,14 @@ function login() {
 			if (code_var == 0 || email_var == 0) {
 				console.log("error user, invalid input");
 			}
-			
+			else {
+				console.log("code: " + code_var + " email: " + email_var);
+			}
+			for(let i = 0; i < data.user.length; i++){
+				const user = data.user[i]
+				if(code_var == user.digit && email_var == user.email)
+					console.log("USER LOGIN SUCCESS");
+			}
 		}
 		if (tab == 2) {
 			console.log("admin");
