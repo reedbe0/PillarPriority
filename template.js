@@ -48,7 +48,7 @@ function login() {
 				const user = data.user[i]
 				if(code_var == user.digit && email_var == user.email) {
 					console.log("USER LOGIN SUCCESS");
-					window.location.replace("https://reedbe0.github.io/PillarPriority/calendar.html");
+					location.href('https://reedbe0.github.io/PillarPriority/calendar.html');
 				}
 			}
 		}
