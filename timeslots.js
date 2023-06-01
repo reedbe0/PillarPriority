@@ -12,7 +12,7 @@ var Timeslots = {
 		for(var i = START_TIME; i < END_TIME; i += TIME_DIVISION) {
 			var row = table.appendChild(document.createElement("tr"));
 
-			for(var j = 0; j < 8; j++) {
+			for(var j = 0; j < 2; j++) {
 				var cell = row.appendChild(document.createElement("td"));
 				this.cells.push(cell);
 				if(j == 0) cell.className = "table-label"; else cell.className = "time-cell";
@@ -25,9 +25,9 @@ var Timeslots = {
 	update: function() {
 		this.cells.forEach(function(cell, i) {
 			var isAllowed = true; // todo: make this actually function as necessary
-			var timeCell = i % 8 == 0;
+			var timeCell = i % 2 == 0;
 
-			if(timeCell) cell.innerText = Util.displayTime(START_TIME + i / 8 * TIME_DIVISION);
+			if(timeCell) cell.innerText = Util.displayTime(START_TIME + i / 2 * TIME_DIVISION);
 			if(isAllowed) cell.removeAttribute("disabled"); else cell.setAttribute("disabled", "true");
 			cell.onclick = function() {
 				if(!cell.getAttribute("disabled")) {
