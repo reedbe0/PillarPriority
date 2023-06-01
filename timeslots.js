@@ -67,6 +67,21 @@ async function printObj(){
 			var textNode = document.createTextNode(data.items[i].name);
 			node.appendChild(textNode);
 			table.appendChild(node);
+			start = data.items[i].timeStart
+			console.log(start)
+			startArray = start.split(":")
+			console.log(startArray)
+			end = data.items[i].timeEnd
+			endArray = end.split(":")
+			console.log(endArray)
+			for(let j = parseInt(startArray[0],10); j < parseInt(endArray[0],10); j++){
+				console.log(j+ ":" + startArray[1])
+				let timeslot = document.createElement("li");
+				var timeText = document.createTextNode(j+ ":" + startArray[1] + "~" + (j+1) + ":" + startArray[1]);
+				timeslot.appendChild(timeText);
+				table.appendChild(timeslot)
+			}
+
 		}
 	}
 }
