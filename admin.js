@@ -33,9 +33,12 @@ function populateTable() {
           : "Not Available";
         row.appendChild(availabilityCell);
 
-        const actionsCell = document.createElement("td");
+        const actionsCell = document.createElement("tr");
         actionsCell.innerHTML = '<button onclick="">Delete</button>';
         row.appendChild(actionsCell);
+        const actionsCell2 = document.createElement("tr");
+        actionsCell2.innerHTML = '<button onclick="">Change</button>';
+        row.appendChild(actionsCell2);
 
         itemList.appendChild(row);
       }
