@@ -208,3 +208,8 @@ footer > p {
 #loginButton:hover {
   background-color: var(--green);
 }
+
+.error{
+
+	border-color: red;
+}
