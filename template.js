@@ -31,10 +31,17 @@ function showAdminLoginTab() {
 	tab = 2;
 }
 
-function login() {
-	fetch("./logindb.json")
-    .then((response) => response.json())
-    .then((data) => {
+async function getData(file){
+	let database = await fetch(file);
+	let items = await database.json();
+	// console.log(items)
+	return items
+
+}
+
+async function login() {
+	var data = await getData("./logindb.json")
+	console.log(data)
 		if (tab == 1) {
 			var code_var = document.getElementById('code').value;
 			var email_var = document.getElementById('userEmail').value;
@@ -48,7 +55,7 @@ function login() {
 				const user = data.user[i]
 				if(code_var == user.digit && email_var == user.email) {
 					console.log("USER LOGIN SUCCESS");
-					window.location.replace('https://reedbe0.github.io/PillarPriority/calendar.html');
+					window.location.replace('calendar.html');
 				}
 			}
 		}
@@ -63,14 +70,10 @@ function login() {
 			}
 			for(let i = 0; i < data.admin.length; i++){
 				const admin = data.admin[i]
-				if(code_var == admin.user && email_var == admin.password) {
+				if(user_var == admin.user && pass_var == admin.password) {
 					console.log("ADMIN LOGIN SUCCESS");
-					window.location.replace('https://reedbe0.github.io/PillarPriority/admin.html');
+					window.location.replace('admin.html');
 				}
 			}
 		}
-	})
-	.catch((error) => {
-		console.error("Error:", error);
-	});
 }
