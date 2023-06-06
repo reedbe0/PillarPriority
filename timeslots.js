@@ -81,13 +81,15 @@ async function printObj(){
 				var timeText = document.createTextNode(j+ ":" + startArray[1] + "~" + (j+1) + ":" + startArray[1]);
 				// console.log(startTime)
 				console.log(data.items[i].available[startCounter])
+				space = document.createTextNode(": ")
 				if (data.items[i].available[startCounter] == true){
-					availability = document.createTextNode(": Reserve")
+					availability = document.createTextNode("Reserve")
 				}
 				else{
-					availability = document.createTextNode(": Unavailable")
+					availability = document.createTextNode("Unavailable")
 				}
 				timeslot.appendChild(timeText);
+				timeslot.appendChild(space)
 				timeslot.appendChild(availability)
 				table.appendChild(timeslot)
 				startCounter += 1;
