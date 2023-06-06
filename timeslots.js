@@ -76,10 +76,16 @@ async function printObj(){
 			console.log(endArray)
 			for(let j = parseInt(startArray[0],10); j < parseInt(endArray[0],10); j++){
 				console.log(j+ ":" + startArray[1])
+				startCounter = 0;
 				let timeslot = document.createElement("li");
 				var timeText = document.createTextNode(j+ ":" + startArray[1] + "~" + (j+1) + ":" + startArray[1]);
-				timeslot.appendChild(timeText);
-				table.appendChild(timeslot)
+				// console.log(startTime)
+				console.log(data.items[i].available[0])
+				if (data.items[i].available[0] == true){
+					timeslot.appendChild(timeText);
+					table.appendChild(timeslot)
+				}
+				startCounter++;
 			}
 
 		}

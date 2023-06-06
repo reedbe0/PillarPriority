@@ -5,17 +5,7 @@
 			"date": "6/28/23",
 			"timeStart": "8:00",
 			"timeEnd" : "16:00",
-			"available" : {
-				"8:00" : true,
-				"9:00" : true,
-				"10:00" : true,
-				"11:00" : true,
-				"12:00" : true,
-				"13:00" : true,
-				"14:00" : true,
-				"15:00" : true
-
-			}
+			"available" : [true,true,true,true,true,true,true,true]
 		},
 		{
 			"name": "iPad",
