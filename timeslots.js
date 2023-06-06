@@ -74,18 +74,18 @@ async function printObj(){
 			end = data.items[i].timeEnd
 			endArray = end.split(":")
 			console.log(endArray)
+			startCounter = 0;
 			for(let j = parseInt(startArray[0],10); j < parseInt(endArray[0],10); j++){
 				console.log(j+ ":" + startArray[1])
-				startCounter = 0;
 				let timeslot = document.createElement("li");
 				var timeText = document.createTextNode(j+ ":" + startArray[1] + "~" + (j+1) + ":" + startArray[1]);
 				// console.log(startTime)
-				console.log(data.items[i].available[0])
-				if (data.items[i].available[0] == true){
+				console.log(data.items[i].available[startCounter])
+				if (data.items[i].available[startCounter] == true){
 					timeslot.appendChild(timeText);
 					table.appendChild(timeslot)
 				}
-				startCounter++;
+				startCounter += 1;
 			}
 
 		}
