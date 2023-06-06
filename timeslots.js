@@ -82,9 +82,14 @@ async function printObj(){
 				// console.log(startTime)
 				console.log(data.items[i].available[startCounter])
 				if (data.items[i].available[startCounter] == true){
-					timeslot.appendChild(timeText);
-					table.appendChild(timeslot)
+					availability = document.createTextNode(": Reserve")
 				}
+				else{
+					availability = document.createTextNode(": Unavailable")
+				}
+				timeslot.appendChild(timeText);
+				timeslot.appendChild(availability)
+				table.appendChild(timeslot)
 				startCounter += 1;
 			}
 
