@@ -20,6 +20,7 @@ function showUserLoginTab() {
 	document.getElementById("adminTab").style.display = "none";
 	document.getElementById("userTabButton").classList.add("selected");
 	document.getElementById("adminTabButton").classList.remove("selected");
+	document.getElementById("newAdminLink").style.display = "none";
 	tab = 1;
 }
 
@@ -28,6 +29,8 @@ function showAdminLoginTab() {
 	document.getElementById("adminTab").style.display = "";
 	document.getElementById("userTabButton").classList.remove("selected");
 	document.getElementById("adminTabButton").classList.add("selected");
+	document.getElementById("newAdminLink").style.display = "";
+
 	tab = 2;
 }
 

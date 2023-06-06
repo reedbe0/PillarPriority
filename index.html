@@ -24,28 +24,38 @@
                 <img src = "images/admin.png" alt = "adminlogo" height = "30px"> Admin
             </button>
 
+
             <div class = "inputFields" id = "userTab">
                 <label for = "code">Code</label>
                 <input type = "number" placeholder = "4-digit-code" id = "code">
- 
+
                 <p></p>
 
                 <label for = "userEmail">Email</label>
                 <input type = "email" placeholder = "username@email.com" id = "userEmail">
             </div>
 
+
             <div class = "inputFields" id = "adminTab" style = "display: none">
                 <label for = "username">User</label>
                 <input type = "user" placeholder = "User" id = "username">
- 
+
                 <p></p>
 
                 <label for = "adminPass">Password</label>
                 <input type = "password" placeholder = "************" id = "adminPass">
             </div>
 
+
             <button id = "loginButton" onclick = "login()">Log In</button>
+
+            <div id="newAdminLink" style="display: none">
+                <a href="admin.html">New Admin Click here</a>
+            </div>
         </div>
+
+
+
     </main>
 	
 	<footer></footer>

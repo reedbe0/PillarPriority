@@ -165,7 +165,8 @@ footer > p {
   grid-template-areas: 
     'topLeft topRight'
     'inputFields inputFields'
-    'loginButton loginButton';
+    'loginButton loginButton'
+	'newAdmin newAdmin';
 }
 
 .loginTabButton {
@@ -212,4 +213,13 @@ footer > p {
 .error{
 
 	border-color: red;
+}
+
+#newAdminLink{
+	background-color: white;
+	align-items: center;
+	grid-area: newAdmin;
+	display: flex;
+	justify-content: center;
+	border: white 6px solid;
 }
