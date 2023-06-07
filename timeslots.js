@@ -83,7 +83,9 @@ async function printObj(){
 				console.log(data.items[i].available[startCounter])
 				space = document.createTextNode(": ")
 				if (data.items[i].available[startCounter] == true){
-					availability = document.createTextNode("Reserve")
+					availability = document.createElement("button")
+					buttonText = document.createTextNode("Reserve")
+					availability.appendChild(buttonText)
 				}
 				else{
 					availability = document.createTextNode("Unavailable")
