@@ -48,7 +48,7 @@ async function login() {
 		if (tab == 1) {
 			var code_var = document.getElementById('code').value;
 			var email_var = document.getElementById('userEmail').value;
-			if (code_var == null || email_var == null) {
+			if (email_var == null) {
 				console.log("error user, invalid input");
 			}
 			else {
