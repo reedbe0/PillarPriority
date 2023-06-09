@@ -56,7 +56,8 @@ async function login() {
 			}
 			for(let i = 0; i < data.user.length; i++){
 				const user = data.user[i]
-				if(code_var == user.digit && email_var == user.email) {
+				
+				if(email_var == user.email) {
 					console.log("USER LOGIN SUCCESS");
 					window.location.replace('calendar.html');
 				}
