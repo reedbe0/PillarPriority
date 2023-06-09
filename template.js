@@ -43,8 +43,9 @@ async function getData(file){
 }
 
 async function login() {
-	var data = await getData("./logindb.json")
-	console.log(data)
+	var user_data = await getData("./userdb.json")
+	var admin_data = await getData("./admindb.json")
+
 		if (tab == 1) {
 			var code_var = document.getElementById('code').value;
 			var email_var = document.getElementById('userEmail').value;
@@ -54,14 +55,9 @@ async function login() {
 			else {
 				console.log("code: " + code_var + " email: " + email_var);
 			}
-			for(let i = 0; i < data.user.length; i++){
-				const user = data.user[i]
-				
-				if(email_var == user.email) {
-					console.log("USER LOGIN SUCCESS");
-					window.location.replace('calendar.html');
-				}
-			}
+			
+			console.log("USER LOGIN SUCCESS");
+			window.location.replace('calendar.html');
 		}
 		if (tab == 2) {
 			var user_var = document.getElementById('username').value;
@@ -70,11 +66,11 @@ async function login() {
 				console.log("error admin, invalid input");
 			}
 			else {
-				console.log("code: " + user_var + " email: " + pass_var);
+				console.log("user: " + user_var + " pass: " + pass_var);
 			}
-			for(let i = 0; i < data.admin.length; i++){
-				const admin = data.admin[i]
-				if(user_var == admin.user && pass_var == admin.password) {
+			for(let i = 0; i < admin_data.length; i++){
+				const admin = admin_data
+				if(user_var == admin[i].user && pass_var == admin[i].pass) {
 					console.log("ADMIN LOGIN SUCCESS");
 					window.location.replace('admin.html');
 				}
