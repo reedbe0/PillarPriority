@@ -104,14 +104,35 @@ async function printObj(){
 
 
 async function loadItems(){
+	var data = await getData("./db.json");
 	await printObj()
 	button = document.getElementsByTagName("button")
 	for (let i = 0; i < button.length; i++){
 		console.log(button[i])
 		button[i].onclick = function(){
 			console.log("reserving " + button[i].id)
+			reserveItem = button[i].id.split(" ")
+			console.log(reserveItem)
+			var geneatedID = Math.floor(1000 + Math.random() * 9000);
+			console.log(geneatedID);
+			let itemIndex;
+			for (let j = 0; j < data.items.length;j++){
+				if (data.items[j].name == reserveItem[0]){
+					itemIndex = j;
+					break;
+				}
+			}
+			console.log("index " + itemIndex)
+			let timeStart = data.items[itemIndex].timeStart.split(":")
+			console.log(timeStart)
+			let timeIndex = (timeStart[0] - reserveItem[1]) * -1
+			data.items[itemIndex].available[timeIndex] = geneatedID
+			console.log(data.items[itemIndex].available[timeIndex])
+
+			// const fs = require('fs')
 		}
 	}
+
 }
 
 
