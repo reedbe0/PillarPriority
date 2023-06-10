@@ -84,6 +84,7 @@ async function printObj(){
 				space = document.createTextNode(": ")
 				if (data.items[i].available[startCounter] == true){
 					availability = document.createElement("button")
+					availability.setAttribute("id", data.items[i].name + " " + j)
 					buttonText = document.createTextNode("Reserve")
 					availability.appendChild(buttonText)
 				}
@@ -100,6 +101,21 @@ async function printObj(){
 		}
 	}
 }
+
+
+async function loadItems(){
+	await printObj()
+	button = document.getElementsByTagName("button")
+	for (let i = 0; i < button.length; i++){
+		console.log(button[i])
+		button[i].onclick = function(){
+			console.log("reserving " + button[i].id)
+		}
+	}
+}
+
+
+
 
 // printObj();
 
