@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 (function() {
 	var admin = document.getElementById("admin");
 	if(admin) admin.style.display = "none"
@@ -34,6 +36,17 @@ function showAdminLoginTab() {
 	tab = 2;
 }
 
+async function setData(file_path, data){
+	fs.writeFile(file_path, data, 'utf8', err => {
+		if (err) {
+			console.error('Error writing to JSON file:', err);
+		}
+		else {
+			console.log('Data appended and file updated successfully.');
+		}
+	});
+}
+
 async function getData(file){
 	let database = await fetch(file);
 	let items = await database.json();
@@ -56,8 +69,15 @@ async function login() {
 				console.log("code: " + code_var + " email: " + email_var);
 			}
 			
+			// Writing doesn't work
+			newdata = (user_data, {"digit": code_var, "email": email_var})
+
+			data = JSON.stringify(newdata, null, 2)
+			
+			setData('./userdb.json', data)
+			
 			console.log("USER LOGIN SUCCESS");
-			window.location.replace('calendar.html');
+			
 		}
 		if (tab == 2) {
 			var user_var = document.getElementById('username').value;
@@ -71,8 +91,8 @@ async function login() {
 			for(let i = 0; i < admin_data.length; i++){
 				const admin = admin_data
 				if(user_var == admin[i].user && pass_var == admin[i].pass) {
-					console.log("ADMIN LOGIN SUCCESS");
 					window.location.replace('admin.html');
+					console.log("ADMIN LOGIN SUCCESS");
 				}
 			}
 		}
