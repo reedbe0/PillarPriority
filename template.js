@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 (function() {
 	var admin = document.getElementById("admin");
 	if(admin) admin.style.display = "none"
@@ -34,6 +36,17 @@ function showAdminLoginTab() {
 	tab = 2;
 }
 
+async function setData(file_path, data){
+	fs.writeFile(file_path, data, 'utf8', err => {
+		if (err) {
+			console.error('Error writing to JSON file:', err);
+		}
+		else {
+			console.log('Data appended and file updated successfully.');
+		}
+	});
+}
+
 async function getData(file){
 	let database = await fetch(file);
 	let items = await database.json();
@@ -43,8 +56,9 @@ async function getData(file){
 }
 
 async function login() {
-	var data = await getData("./logindb.json")
-	console.log(data)
+	var user_data = await getData("./userdb.json")
+	var admin_data = await getData("./admindb.json")
+
 		if (tab == 1) {
 			var code_var = document.getElementById('code').value;
 			var email_var = document.getElementById('userEmail').value;
@@ -54,14 +68,16 @@ async function login() {
 			else {
 				console.log("code: " + code_var + " email: " + email_var);
 			}
-			for(let i = 0; i < data.user.length; i++){
-				const user = data.user[i]
-				
-				if(email_var == user.email) {
-					console.log("USER LOGIN SUCCESS");
-					window.location.replace('calendar.html');
-				}
-			}
+			
+			// Writing doesn't work
+			newdata = (user_data, {"digit": code_var, "email": email_var})
+
+			data = JSON.stringify(newdata, null, 2)
+			
+			setData('./userdb.json', data)
+			
+			console.log("USER LOGIN SUCCESS");
+			
 		}
 		if (tab == 2) {
 			var user_var = document.getElementById('username').value;
@@ -70,13 +86,13 @@ async function login() {
 				console.log("error admin, invalid input");
 			}
 			else {
-				console.log("code: " + user_var + " email: " + pass_var);
+				console.log("user: " + user_var + " pass: " + pass_var);
 			}
-			for(let i = 0; i < data.admin.length; i++){
-				const admin = data.admin[i]
-				if(user_var == admin.user && pass_var == admin.password) {
-					console.log("ADMIN LOGIN SUCCESS");
+			for(let i = 0; i < admin_data.length; i++){
+				const admin = admin_data
+				if(user_var == admin[i].user && pass_var == admin[i].pass) {
 					window.location.replace('admin.html');
+					console.log("ADMIN LOGIN SUCCESS");
 				}
 			}
 		}
