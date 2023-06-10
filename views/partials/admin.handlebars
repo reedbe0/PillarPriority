@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="/style_admin.css">
+<script src="/admin.js"></script>
+<body>
+    <div class="box">
+      <div class="boxTitle">Add Items</div>
+      <form class="adminForm" onsubmit="submitForm(event)">
+        <div class="test">
+          <div class="time-selection">
+            <label for="start-time">Start Time:</label>
+            <input type="datetime-local" id="start-time" name="end-time" />
+            <label for="end-time">End Time:</label>
+            <input type="datetime-local" id="end-time" name="end-time" />
+          </div>
+          <div class="name-select">
+            <input type="text" id="addItem" placeholder="Item Name" />
+            <button type="submit">Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="box">
+      <div class="boxTitle">Current Items</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Item Name</th>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Availability</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="itemList"></tbody>
+      </table>
+    </div>
+
+</body>

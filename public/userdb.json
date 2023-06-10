@@ -1,0 +1,14 @@
+[
+  {
+    "digit": 4444,
+    "email": "test@gmail.com"
+  },
+  {
+    "userEmail": "ben@email.com",
+    "code": ""
+  },
+  {
+    "userEmail": "test",
+    "code": ""
+  }
+]

@@ -1,0 +1,44 @@
+<p>
+<a href= "calendar.html">Calandar</a>
+</p>
+<main id = "content">
+    <div class = "loginBox">
+        <button class = "loginTabButton selected" id = "userTabButton" onclick = "showUserLoginTab()"> 
+            <img src = "/user.png" alt = "Userlogo" height = "30px"> User 
+        </button>
+        
+        <button class = "loginTabButton" id = "adminTabButton" onclick = "showAdminLoginTab()">
+            <img src = "/admin.png" alt = "adminlogo" height = "30px"> Admin
+        </button>
+
+
+        <div class = "inputFields" id = "userTab">
+            <p>Need to create a new reservation?</p>
+            <label for = "userEmail">Email</label>
+            <input type = "email" placeholder = "username@email.com" id = "userEmail">
+
+            <p>Already have a reservation?</p>
+            <label for = "code">Code</label>
+            <input type = "number" placeholder = "4-digit-code" id = "code">
+        </div>
+
+
+        <div class = "inputFields" id = "adminTab" style = "display: none">
+            <label for = "username">User</label>
+            <input type = "user" placeholder = "User" id = "username">
+
+            <p></p>
+
+            <label for = "adminPass">Password</label>
+            <input type = "password" placeholder = "************" id = "adminPass">
+        </div>
+
+
+        <button id = "loginButton" onclick = "login()">Log In</button>
+
+        <div id="newAdminLink" style="display: none">
+            <a href="admin.html">New Admin Click here</a>
+        </div>
+    </div>
+
+</main>

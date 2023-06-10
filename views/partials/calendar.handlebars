@@ -1,0 +1,25 @@
+<script src = "/calendar.js" defer></script>
+<script src = "main.js" defer></script>
+<link rel="stylesheet" href="/style.css">
+
+<main id = "content">
+    <div id = "calendar-container">
+        <div id = "month-select">
+            <button class = "calendar-move" id = "previous-month" onclick = "Calendar.previousMonth()"><</button>
+            <span id = "month-display"></span>
+            <button class = "calendar-move" id = "next-month" onclick = "Calendar.nextMonth()">></button>
+        </div>
+        
+        <table id = "calendar">
+            <tr>
+                <th class = "table-label">Sun</th>
+                <th class = "table-label">Mon</th>
+                <th class = "table-label">Tue</th>
+                <th class = "table-label">Wed</th>
+                <th class = "table-label">Thu</th>
+                <th class = "table-label">Fri</th>
+                <th class = "table-label">Sat</th>
+            </tr>
+        </table>
+    </div>
+</main>

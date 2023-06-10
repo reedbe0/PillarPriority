@@ -1,97 +1,110 @@
-/*
+const path = require('path')
 const express = require('express');
-const app = express();
-const port = 8080;
+const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
+const fs = require('fs');
 
-app.get('/', (req, res) => {
-    res.sendFile('index.html', {root:__dirname});
+const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+const port = process.env.PORT || 3000;
+
+app.engine('handlebars', exphbs.engine({
+    defaultLayout: "main"
+}))
+
+app.set('view engine', 'handlebars')
+
+app.use(express.static('public'));
+
+app.get('/', function(req, res,){
+    res.status(200).render('./partials/home');
 });
 
-app.listen(port, () => {
-    console.log('Now listening on port ', port);
-})
-*/
-var http = require('http');
-var fs = require('fs');
-var path = require('path');
+app.get('/read_admin', (req, res) => {
+    fs.readFile('./public/admindb.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading JSON file:', err);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+        
+        // Send the JSON data to the browser
+        res.send(data);
+    });
+});
 
-http.createServer(function (req, res){
-    if(req.url === "/" || req.url.match("index.html")){
-        fs.readFile("./index.html", "utf-8", function(err, html){
-            res.writeHead(200, {"Content-Type": "text/html"});
-            res.end(html);
+app.get('/read_user', (req, res) => {
+    fs.readFile('./public/userdb.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading JSON file:', err);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+        
+        // Send the JSON data to the browser
+        res.send(data);
+    });
+});
+
+app.post('/write_user', (req,res) => {
+    const inputData = {
+        userEmail: req.body.userEmail,
+        code: req.body.code
+    };
+
+    fs.readFile('./public/userdb.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading JSON file:', err);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+    
+        let jsonData = [];
+        try {
+            jsonData = JSON.parse(data);
+        } catch (parseError) {
+            console.error('Error parsing JSON:', parseError);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+    
+        if (!Array.isArray(jsonData)) {
+            console.error('Existing data is not an array');
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+    
+        jsonData.push(inputData);
+    
+        const jsonString = JSON.stringify(jsonData, null, 2);
+    
+        fs.writeFile('./public/userdb.json', jsonString, 'utf-8', (err) =>{
+            if (err) {
+                console.error('Error writing to JSON file:', err);
+                res.status(500).send('Internal Server Error');
+                return;
+            }
+
+
+            res.send('JSON file written successfully!');
         });
-    }
-    else if(req.url === "/calender.html" || req.url.match("calendar.html")){
-        fs.readFile("./calender.html", "utf-8", function(err, html){
-            res.writeHead(200, {"Content-Type": "text/html"});
-            res.end(html);
-        });
-    }
-    else if(req.url === "/timeslots.html" || req.url.match("timeslots.html")){
-        fs.readFile("./timeslots.html", "utf-8", function(err, html){
-            res.writeHead(200, {"Content-Type": "text/html"});
-            res.end(html);
-        });
-    }
-    else if(req.url === "/admin.html" || req.url.match("admin.html")){
-        fs.readFile("./admin.html", "utf-8", function(err, html){
-            res.writeHead(200, {"Content-Type": "text/html"});
-            res.end(html);
-        });
-    }
-    else if(req.url.match("\.css$")){
-        fs.readFile("./style.css", "utf-8", function(err, css){
-            res.writeHead(200, {"Content-Type": "text/css"});
-            res.end(css);
-        })
-    }
-    else if(req.url.match("\.js$")){
-        fs.readFile("./index.js", function(err, javascript){
-            res.writeHead(200, {"Content-Type": "application/javascript"});
-            res.end(javascript);
-        })
-    }
-    else if(req.url.match("\.js$")){
-        fs.readFile("./main.js", function(err, javascript){
-            res.writeHead(200, {"Content-Type": "application/javascript"});
-            res.end(javascript);
-        })
-    }
-    else if(req.url.match("\.js$")){
-        fs.readFile("./timeslots.js", function(err, javascript){
-            res.writeHead(200, {"Content-Type": "application/javascript"});
-            res.end(javascript);
-        })
-    }
-    else if(req.url.match("\.js$")){
-        fs.readFile("./verifylogin.js", function(err, javascript){
-            res.writeHead(200, {"Content-Type": "application/javascript"});
-            res.end(javascript);
-        })
-    }
-    else if(req.url.match("\.js$")){
-        fs.readFile("./admin.js", function(err, javascript){
-            res.writeHead(200, {"Content-Type": "application/javascript"});
-            res.end(javascript);
-        })
-    }
-    else if(req.url.match("\.js$")){
-        fs.readFile("./calendar.js", function(err, javascript){
-            res.writeHead(200, {"Content-Type": "application/javascript"});
-            res.end(javascript);
-        })
-    }
-    else if(req.url.match("\.png$")){
-        fs.readFile("./images/admin.png", function(err, image){
-            res.writeHead(200, {"Content-Type": "image/png"});
-            res.end(image);
-        })
-    }
-    else if(req.url.match("\.png$")){
-        fs.readFile("./images/user.png", function(err, image){
-            res.writeHead(200, {"Content-Type": "image/png"});
-            res.end(image);
-        });
-    }
-}).listen(3000);
+    });
+});
+
+app.get('/admin', function(req, res,){
+    res.status(200).render('./partials/admin');
+});
+
+app.get('/calendar', function(req, res,){
+    res.status(200).render('./partials/calendar');
+});
+
+app.get('/calendar', function(req, res,){
+    res.status(200).render('./partials/calendar');
+});
+
+app.listen(port, function () {
+    console.log("== Server is listening on port", port);
+});
