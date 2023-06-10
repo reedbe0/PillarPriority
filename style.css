@@ -223,3 +223,13 @@ footer > p {
 	justify-content: center;
 	border: white 6px solid;
 }
+
+.box > h1{
+	background-color: var(--accent);
+	color: white;
+}
+
+form > label, button{
+
+	padding-left: 20px;
+}
