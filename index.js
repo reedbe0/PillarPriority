@@ -1,5 +1,3 @@
-const fs = require('fs')
-
 (function() {
 	var admin = document.getElementById("admin");
 	if(admin) admin.style.display = "none"
@@ -48,7 +46,7 @@ async function setData(file_path, data){
 }
 
 async function getData(file){
-	let database = await fetch(file);
+	let database = await fetch(file, {mode: 'no-cors'});
 	let items = await database.json();
 	// console.log(items)
 	return items

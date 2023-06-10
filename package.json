@@ -1,0 +1,23 @@
+{
+  "name": "pillarpriority",
+  "version": "1.0.0",
+  "description": "https://reedbe0.github.io/PillarPriority/",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://reedbe0@github.com/reedbe0/PillarPriority.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reedbe0/PillarPriority/issues"
+  },
+  "homepage": "https://github.com/reedbe0/PillarPriority#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
