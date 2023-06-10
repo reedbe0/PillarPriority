@@ -61,6 +61,7 @@ async function printObj(){
 	fullDate = localStorage.getItem("fullDateClicked");
 	console.log(fullDate)
 	console.log(data.items[0].date)
+	let itemsShown = 0
 	for(var i = 0; i < data.items.length;i++){
 		if (fullDate == data.items[i].date){
 			var node = document.createElement("tr");
@@ -85,6 +86,7 @@ async function printObj(){
 				if (data.items[i].available[startCounter] == true){
 					availability = document.createElement("button")
 					availability.setAttribute("id", data.items[i].name + " " + j)
+					availability.setAttribute("class", "reserveButton")
 					buttonText = document.createTextNode("Reserve")
 					availability.appendChild(buttonText)
 				}
@@ -97,8 +99,14 @@ async function printObj(){
 				table.appendChild(timeslot)
 				startCounter += 1;
 			}
-
+			itemsShown += 1
 		}
+	}
+	if (itemsShown == 0){
+		let notice = document.createElement("tr")
+		let textNode = document.createTextNode("No Items Available on This Day")
+		notice.appendChild(textNode)
+		table.appendChild(notice)
 	}
 }
 
@@ -106,7 +114,7 @@ async function printObj(){
 async function loadItems(){
 	var data = await getData("./db.json");
 	await printObj()
-	button = document.getElementsByTagName("button")
+	button = document.getElementsByClassName("reserveButton")
 	for (let i = 0; i < button.length; i++){
 		console.log(button[i])
 		button[i].onclick = function(){
@@ -128,8 +136,14 @@ async function loadItems(){
 			let timeIndex = (timeStart[0] - reserveItem[1]) * -1
 			data.items[itemIndex].available[timeIndex] = geneatedID
 			console.log(data.items[itemIndex].available[timeIndex])
-
+			localStorage.setItem("confirmationNumber", geneatedID)
 			// const fs = require('fs')
+
+			//write tot database
+
+
+			location.href = "confirm"
+
 		}
 	}
 
