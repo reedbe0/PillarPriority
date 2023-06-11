@@ -97,12 +97,60 @@ app.get('/admin', function(req, res,){
     res.status(200).render('./partials/admin');
 });
 
-app.get('/calendar', function(req, res,){
-    res.status(200).render('./partials/calendar');
+app.post('/write_db', (req,res) => {
+    const inputData = {
+        itemName: req.body.itemName,
+        date: req.body.date,
+        startTime: req.body.startTime,
+        endTime: req.body.endTime,
+        available: req.body.available,
+    };
+
+    fs.readFile('./public/db.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading JSON file:', err);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+    
+        let jsonData = [];
+        try {
+            jsonData = JSON.parse(data);
+        } catch (parseError) {
+            console.error('Error parsing JSON:', parseError);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+    
+        if (!Array.isArray(jsonData)) {
+            console.error('Existing data is not an array');
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+    
+        jsonData.push(inputData);
+    
+        const jsonString = JSON.stringify(jsonData, null, 2);
+    
+        fs.writeFile('./public/db.json', jsonString, 'utf-8', (err) =>{
+            if (err) {
+                console.error('Error writing to JSON file:', err);
+                res.status(500).send('Internal Server Error');
+                return;
+            }
+
+
+            res.send('JSON file written successfully!');
+        });
+    });
 });
 
 app.get('/calendar', function(req, res,){
     res.status(200).render('./partials/calendar');
+});
+
+app.get('/timeslots', function(req, res,){
+    res.status(200).render('./partials/timeslots');
 });
 
 app.listen(port, function () {

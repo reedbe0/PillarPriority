@@ -6,5 +6,9 @@
   {
     "userEmail": "test",
     "code": ""
+  },
+  {
+    "userEmail": "ben@email.com",
+    "code": "4123"
   }
 ]

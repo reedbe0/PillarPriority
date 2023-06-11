@@ -72,7 +72,7 @@ var Calendar = {
 				if(!cell.getAttribute("disabled")) {
 					const fullDate = cell.date.display();
 					localStorage.setItem("fullDateClicked", fullDate);
-					location.href = "timeslots.html"
+					window.location.replace('./timeslots');
 				}
 			}
 		});

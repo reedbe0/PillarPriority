@@ -104,6 +104,6 @@ async function printObj(){
 // printObj();
 
 var dateData = localStorage.getItem("fullDateClicked");
-if(!dateData) location.replace("calendar.html");
+if(!dateData) window.location.replace('./calendar');
 var date = new Date(dateData);
 selectedDate.innerText += date.display("long");

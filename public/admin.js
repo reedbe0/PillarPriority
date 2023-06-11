@@ -6,13 +6,13 @@ function populateTable() {
 
       itemList.innerHTML = "";
 
-      for (let i = 0; i < data.items.length; i++) {
-        const item = data.items[i];
+      for (let i = 0; i < data.length; i++) {
+        const item = data[i];
 
         const row = document.createElement("tr");
 
         const itemNameCell = document.createElement("td");
-        itemNameCell.textContent = item.name;
+        itemNameCell.textContent = item.itemName;
         row.appendChild(itemNameCell);
 
         const dateCell = document.createElement("td");
@@ -20,11 +20,11 @@ function populateTable() {
         row.appendChild(dateCell);
 
         const timeStartCell = document.createElement("td");
-        timeStartCell.textContent = item.timeStart;
+        timeStartCell.textContent = item.startTime;
         row.appendChild(timeStartCell);
 
         const timeEndCell = document.createElement("td");
-        timeEndCell.textContent = item.timeEnd;
+        timeEndCell.textContent = item.endTime;
         row.appendChild(timeEndCell);
 
         const availabilityCell = document.createElement("td");
@@ -51,21 +51,39 @@ function populateTable() {
 function submitForm(event) {
   event.preventDefault();
 
-  const itemName = document.getElementById("addItem").value;
-  const startTime = document.getElementById("start-time").value;
-  const endTime = document.getElementById("end-time").value;
+  var itemName = document.getElementById("addItem").value;
+  var startTime = document.getElementById("start-time").value;
+  var endTime = document.getElementById("end-time").value;
+  var date = formatDate(new Date(startTime));
+  startTime = formatTime(new Date(startTime));
+  endTime = formatTime(new Date(endTime));
+  available = "true"
 
   const newItem = {
-    name: itemName,
-    date: formatDate(new Date(startTime)),
-    timeStart: formatTime(new Date(startTime)),
-    timeEnd: formatTime(new Date(endTime)),
-    available: "true",
+    itemName: itemName,
+    date: date,
+    startTime: startTime,
+    endTime: endTime,
+    available: available
   };
 
-  console.log(newItem);
+  fetch('/write_db', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newItem)
+  })
+  .then(response => response.text())
+  .then(message => {
+    console.log('Server response:', message);
+    // window.location.replace('./calendar');
+  })
+  .catch(error => {
+    console.error('Error writing to JSON data:', error);
+  });
 
-  //POST request here
+  console.log(newItem);
 }
 
 function formatDate(date) {
