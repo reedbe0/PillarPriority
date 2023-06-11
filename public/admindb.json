@@ -1,6 +1,10 @@
 [
-    {
-        "user" : "test",
-        "pass" : "secure"
-    }
+  {
+    "user": "test",
+    "pass": "secure"
+  },
+  {
+    "user": "admin",
+    "pass": "pass"
+  }
 ]
