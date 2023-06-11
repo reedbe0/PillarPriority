@@ -174,7 +174,8 @@ async function loadItems(){
 			console.log(data[itemIndex].available[timeIndex])
 			localStorage.setItem("confirmationNumber", geneatedID)
 			localStorage.setItem("confrimationStartTime", data[itemIndex].startTime)
-			localStorage.setItem("confirmItem", reserveItem[0])
+			console.log(data[itemIndex].startTime)
+			localStorage.setItem("confirmationItem", reserveItem[0])
 			// ID
 			// timeIndex
 			// itemIndex
