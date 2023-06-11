@@ -13,24 +13,29 @@ function populateTable() {
 
         const itemNameCell = document.createElement("td");
         itemNameCell.textContent = item.itemName;
+        itemNameCell.classList.add("admintd");
         row.appendChild(itemNameCell);
 
         const dateCell = document.createElement("td");
         dateCell.textContent = item.date;
+        dateCell.classList.add("admintd");
         row.appendChild(dateCell);
 
         const timeStartCell = document.createElement("td");
         timeStartCell.textContent = item.startTime;
+        timeStartCell.classList.add("admintd");
         row.appendChild(timeStartCell);
 
         const timeEndCell = document.createElement("td");
         timeEndCell.textContent = item.endTime;
+        timeEndCell.classList.add("admintd");
         row.appendChild(timeEndCell);
 
         const availabilityCell = document.createElement("td");
         availabilityCell.textContent = item.available
           ? "Available"
           : "Not Available";
+        availabilityCell.classList.add("admintd");
         row.appendChild(availabilityCell);
 
         const actionsCell = document.createElement("tr");
@@ -64,26 +69,27 @@ function submitForm(event) {
     date: date,
     startTime: startTime,
     endTime: endTime,
-    available: available
+    available: available,
   };
 
-  fetch('/write_db', {
-    method: 'POST',
+  fetch("/write_db", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(newItem)
+    body: JSON.stringify(newItem),
   })
-  .then(response => response.text())
-  .then(message => {
-    console.log('Server response:', message);
-    // window.location.replace('./calendar');
-  })
-  .catch(error => {
-    console.error('Error writing to JSON data:', error);
-  });
+    .then((response) => response.text())
+    .then((message) => {
+      console.log("Server response:", message);
+      // window.location.replace('./calendar');
+    })
+    .catch((error) => {
+      console.error("Error writing to JSON data:", error);
+    });
 
   console.log(newItem);
+  location.reload();
 }
 
 function formatDate(date) {

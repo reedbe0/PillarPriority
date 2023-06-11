@@ -1,158 +1,219 @@
 :root {
-	--accent: #38b6ff;
-	--dark-accent: #344b59;
-	--gray: #cdced2;
-	--dark-gray: #929294;
-	--green: #34ff67;
-	--dark-green: #2bd355;
+  --accent: #38b6ff;
+  --dark-accent: #344b59;
+  --gray: #cdced2;
+  --dark-gray: #929294;
+  --green: #34ff67;
+  --dark-green: #2bd355;
 }
 
 body {
-	margin-top: 0;
-	margin-left: 0;
-	margin-right: 0;
-	font-family: sans-serif;
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  font-family: sans-serif;
 }
 
 button {
-	border: none;
-	cursor: pointer;
-	transition: background 0.2s;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
 header {
-	text-align: center;
-	background: var(--accent);
-	color: white;
-	font-size: x-large;
-	border: solid 0 var(--accent);
-	margin: 0;
-	padding: 10px 0px;
+  text-align: center;
+  background: var(--accent);
+  color: white;
+  font-size: x-large;
+  border: solid 0 var(--accent);
+  margin: 0;
+  padding: 10px 0px;
 }
 
 h1 {
-	text-align: center;
-	font-weight: normal;
+  text-align: center;
+  font-weight: normal;
 }
 
 header > h1 {
-	margin: 0;
-	font-style: italic;
+  margin: 0;
+  font-style: italic;
 }
 
 #home-link {
-	color: white;
-	text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 #content {
-	margin-left: 20%;
-	margin-right: 20%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 #calendar-container {
-	text-align: center;
+  text-align: center;
 }
 
 #month-select {
-	margin-top: 10px;
-	background: var(--gray);
-	border: 2px solid black;
-	font-size: 200%;
+  margin-top: 10px;
+  background: var(--gray);
+  border: 2px solid black;
+  font-size: 200%;
 }
 
 .calendar-move {
-	font-size: 100%;
-	width: 10%;
-	border: none;
-	background: var(--gray);
-	transition: background 0.2s;
+  font-size: 100%;
+  width: 10%;
+  border: none;
+  background: var(--gray);
+  transition: background 0.2s;
 }
 
 .calendar-move:hover {
-	background: var(--dark-gray);
+  background: var(--dark-gray);
 }
 
-#calendar, #timeslots {
-	width: 100%;
-	table-layout: fixed;
+#calendar,
+#timeslots {
+  width: 100%;
+  table-layout: fixed;
 }
 
-.time-cell, .table-label {
-	background: var(--gray);
-	height: 50px;
-	cursor: pointer;
-	transition: background 0.2s;
+.time-cell,
+.table-label {
+  background: var(--gray);
+  height: 50px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
 .time-cell:hover {
-	background: var(--accent);
+  background: var(--accent);
 }
 
 .time-cell[disabled] {
-	background: var(--dark-gray);
-	cursor: not-allowed;
+  background: var(--dark-gray);
+  cursor: not-allowed;
 }
 
 .table-label {
-	background: white;
-	cursor: default;
+  background: white;
+  cursor: default;
 }
 
 footer > p {
-	text-align: center;
-	background: var(--accent);
-	color: white;
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	margin: 0;
+  text-align: center;
+  background: var(--accent);
+  color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
 }
 
 #day-container {
-	margin-top: 10%;
-	display: inline-block;
+  margin-top: 10%;
+  display: inline-block;
 }
 
 .day {
-	font-size: 60px;
-	list-style-type: none;
-	display: inline-flex;
+  font-size: 60px;
+  list-style-type: none;
+  display: inline-flex;
 }
 
 .box {
-	max-width: 1300px;
-	min-height: 300px;
-	background: rgb(215, 215, 215);
-	margin: 0 auto;
-	margin-top: 100px;
-	padding-bottom: 50px;
+  max-width: 1300px;
+  min-height: 300px;
+  background: rgb(215, 215, 215);
+  margin: 0 auto;
+  margin-top: 100px;
+  padding-bottom: 50px;
+  min-height: 0;
 }
 
 .boxTitle {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: var(--accent);
-	width: 100%;
-	height: 40px;
-	text-align: center;
-	font-size: 1.2em;
-	font-weight: 600;
-	box-shadow: inset 0 0 0 2px black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  width: 100%;
+  height: 40px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 2px black;
 }
 
 .adminForm {
-	margin-top: 20px;
-	width: 100%;
-	display: flex;
-	justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 #addItem {
-	max-width: 400px;
-	height: 30px;
-	width: 100%;
+  max-width: 400px;
+  height: 30px;
+  width: 100%;
+}
+
+ul.horizontal-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+ul.horizontal-list li {
+  margin-right: 10px;
+}
+
+.time-selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 10px;
+}
+
+.time-selection label {
+  margin-right: 10px;
+}
+
+.time-selection select {
+  margin-right: 10px;
+}
+
+#adminTable {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.adminth {
+  background-color: #f2f2f2;
+  text-align: left;
+  padding: 10px;
+}
+
+.admintd {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.name-select {
+  margin: 0 auto;
+  display: flex;
+}
+
+.test {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .loginBox {
@@ -162,15 +223,15 @@ footer > p {
   background: var(--gray);
   margin: 0 auto;
   margin-top: 100px;
-  grid-template-areas: 
-    'topLeft topRight'
-    'inputFields inputFields'
-    'loginButton loginButton'
-	'newAdmin newAdmin';
+  grid-template-areas:
+    "topLeft topRight"
+    "inputFields inputFields"
+    "loginButton loginButton"
+    "newAdmin newAdmin";
 }
 
 .loginTabButton {
-  background: var(--dark-accent); 
+  background: var(--dark-accent);
   height: 60px;
   text-align: center;
   display: block;
@@ -179,15 +240,15 @@ footer > p {
 }
 
 .loginTabButton.selected {
-	background: var(--accent);
-	cursor: default;
+  background: var(--accent);
+  cursor: default;
 }
 
-.loginTabButton:hover{
+.loginTabButton:hover {
   background: var(--accent);
 }
 
-.inputFields{
+.inputFields {
   grid-area: inputFields;
   padding: 10% 20%;
 }
@@ -210,16 +271,15 @@ footer > p {
   background-color: var(--green);
 }
 
-.error{
-
-	border-color: red;
+.error {
+  border-color: red;
 }
 
-#newAdminLink{
-	background-color: white;
-	align-items: center;
-	grid-area: newAdmin;
-	display: flex;
-	justify-content: center;
-	border: white 6px solid;
+#newAdminLink {
+  background-color: white;
+  align-items: center;
+  grid-area: newAdmin;
+  display: flex;
+  justify-content: center;
+  border: white 6px solid;
 }
