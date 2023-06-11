@@ -6,7 +6,7 @@
     "endTime": "16:00",
     "available": [
       true,
-      true,
+      false,
       true,
       true,
       true,
@@ -21,15 +21,15 @@
     "startTime": "10:00",
     "endTime": "18:00",
     "available": [
-		false,
-		false,
-		false,
-		false,
-		false,
-		false,
-		false,
-		false
-	  ]
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
   },
   {
     "itemName": "newitem",

@@ -82,7 +82,7 @@ async function printObj(){
 				space = document.createTextNode(": ")
 				if (data[i].available[startCounter] == true){
 					availability = document.createElement("button")
-					availability.setAttribute("id", data[i].name + " " + j)
+					availability.setAttribute("id", data[i].itemName + " " + j)
 					availability.setAttribute("class", "reserveButton")
 					buttonText = document.createTextNode("Reserve")
 					availability.appendChild(buttonText)
@@ -122,24 +122,60 @@ async function loadItems(){
 			console.log(geneatedID);
 			let itemIndex;
 			for (let j = 0; j < data.length;j++){
-				if (data[j].name == reserveItem[0]){
+				if (data[j].itemName == reserveItem[0]){
 					itemIndex = j;
 					break;
 				}
 			}
+			// Update the data to tell users it's unaviable.
 			console.log("index " + itemIndex)
-			let timeStart = data[itemIndex].timeStart.split(":")
+			let timeStart = data[itemIndex].startTime.split(":")
 			console.log(timeStart)
 			let timeIndex = (timeStart[0] - reserveItem[1]) * -1
-			data[itemIndex].available[timeIndex] = geneatedID
+			
+			const newavailable = []
+			for (let i = 0; i < 7; i++){
+				if(i == timeIndex){
+					newavailable.push(false);
+				}
+				newavailable.push(true);
+			}
+			//newavailable = false;
+
+			const newdata = {
+				index: itemIndex,
+				itemName: data[itemIndex].itemName,
+				date: data[itemIndex].date,
+				startTime: data[itemIndex].startTime,
+				endTime: data[itemIndex].endTime,
+				available: newavailable
+			};
+
+			fetch('/update_db', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(newdata)
+			})
+			.then(response => response.text())
+			.then(message => {
+				console.log('Server response:', message);
+			})
+			.catch(error => {
+				console.error('Error writing to JSON data:', error);
+			});
+			
 			console.log(data[itemIndex].available[timeIndex])
 			localStorage.setItem("confirmationNumber", geneatedID)
-			// const fs = require('fs')
+			
+			// ID
+			// timeslot, start
+			// timeIndex
+			// item
 
-			//write tot database
 
-
-			location.href = "confirm"
+			//location.href = "confirm"
 
 		}
 	}

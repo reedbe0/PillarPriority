@@ -153,6 +153,65 @@ app.get('/timeslots', function(req, res,){
     res.status(200).render('./partials/timeslots');
 });
 
+app.post('/update_db', (req,res) => {
+    const index = parseInt(req.body.index);
+    if(isNaN(index)) {
+        res.status(400).send('Invalid Index');
+        return;
+    }
+
+    const updatedData = {
+        itemName: req.body.itemName,
+        date: req.body.date,
+        startTime: req.body.startTime,
+        endTime: req.body.endTime,
+        available: req.body.available,
+    };
+
+    fs.readFile('./public/db.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading JSON file:', err);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+    
+        let jsonData = [];
+        try {
+            jsonData = JSON.parse(data);
+        } catch (parseError) {
+            console.error('Error parsing JSON:', parseError);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+    
+        if (!Array.isArray(jsonData)) {
+            console.error('Existing data is not an array');
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+
+        if (index < 0 || index >= jsonData.length) {
+            res.status(400).send('Invalid index');
+            return;
+        }
+
+        jsonData[index] = updatedData;
+    
+        const jsonString = JSON.stringify(jsonData, null, 2);
+    
+        fs.writeFile('./public/db.json', jsonString, 'utf-8', (err) =>{
+            if (err) {
+                console.error('Error writing to JSON file:', err);
+                res.status(500).send('Internal Server Error');
+                return;
+            }
+
+
+            res.send('JSON file updated successfully!');
+        });
+    });
+});
+
 app.listen(port, function () {
     console.log("== Server is listening on port", port);
 });
