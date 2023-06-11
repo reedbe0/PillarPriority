@@ -1,5 +1,5 @@
-const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+// const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+// const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 var Calendar = {
 	day: new Date().getDate(),
@@ -74,8 +74,9 @@ var Calendar = {
 			cell.onclick = function() {
 				if(!cell.getAttribute("disabled")) {
 					const fullDate = cell.date.display();
+					console.log(fullDate)
 					localStorage.setItem("fullDateClicked", fullDate);
-					window.location.replace('./timeslots');
+					window.location = './timeslots';
 				}
 			}
 		});
