@@ -153,6 +153,10 @@ app.get('/timeslots', function(req, res,){
     res.status(200).render('./partials/timeslots');
 });
 
+app.get('/confirm', function(req, res,){
+    res.status(200).render('./partials/confirm');
+});
+
 app.post('/write_codedb', (req,res) => {
     const inputData = {
         geneatedID: req.body.geneatedID,
