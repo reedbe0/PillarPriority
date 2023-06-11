@@ -93,6 +93,51 @@ app.post('/write_user', (req,res) => {
     });
 });
 
+app.post('/write_admin', (req,res) => {
+    const inputData = {
+        user: req.body.user,
+        pass: req.body.pass
+    };
+
+    fs.readFile('./public/admindb.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading JSON file:', err);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+    
+        let jsonData = [];
+        try {
+            jsonData = JSON.parse(data);
+        } catch (parseError) {
+            console.error('Error parsing JSON:', parseError);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+    
+        if (!Array.isArray(jsonData)) {
+            console.error('Existing data is not an array');
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+    
+        jsonData.push(inputData);
+    
+        const jsonString = JSON.stringify(jsonData, null, 2);
+    
+        fs.writeFile('./public/admindb.json', jsonString, 'utf-8', (err) =>{
+            if (err) {
+                console.error('Error writing to JSON file:', err);
+                res.status(500).send('Internal Server Error');
+                return;
+            }
+
+
+            res.send('JSON file written successfully!');
+        });
+    });
+});
+
 app.get('/admin', function(req, res,){
     res.status(200).render('./partials/admin');
 });
@@ -256,6 +301,10 @@ app.post('/update_db', (req,res) => {
             res.send('JSON file updated successfully!');
         });
     });
+});
+
+app.get('/newAdmin', function(req, res,){
+    res.status(200).render('./partials/newAdmin');
 });
 
 app.listen(port, function () {
