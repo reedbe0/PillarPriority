@@ -134,11 +134,16 @@ async function loadItems(){
 			let timeIndex = (timeStart[0] - reserveItem[1]) * -1
 			
 			const newavailable = []
-			for (let i = 0; i < 7; i++){
+			for (let i = 0; i < 8; i++){
 				if(i == timeIndex){
 					newavailable.push(false);
 				}
-				newavailable.push(true);
+				else if(data[itemIndex].available[i] == false){
+					newavailable.push(false);
+				}
+				else {
+					newavailable.push(true);
+				}
 			}
 			//newavailable = false;
 
