@@ -175,12 +175,31 @@ async function loadItems(){
 			localStorage.setItem("confirmationNumber", geneatedID)
 			
 			// ID
-			// timeslot, start
 			// timeIndex
-			// item
+			// itemIndex
+			const newuser = {
+				geneatedID: geneatedID,
+				timeIndex: timeIndex,
+				itemIndex: itemIndex
+			};
+			
+			fetch('/write_codedb', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(newuser)
+			})
+			.then(response => response.text())
+			.then(message => {
+				console.log('Server response:', message);
+			})
+			.catch(error => {
+				console.error('Error writing to JSON data:', error);
+			});
 
 
-			//location.href = "confirm"
+			location.href = "confirm"
 
 		}
 	}
