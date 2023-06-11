@@ -5,7 +5,7 @@
     "startTime": "8:00",
     "endTime": "16:00",
     "available": [
-      true,
+      false,
       true,
       false,
       true,
