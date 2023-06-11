@@ -64,7 +64,7 @@ async function login() {
 		.then(response => response.text())
 		.then(message => {
 			console.log('Server response:', message);
-			// window.location.replace('./calendar');
+			window.location.replace('./calendar');
 		})
 		.catch(error => {
 			console.error('Error writing to JSON data:', error);

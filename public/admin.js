@@ -57,7 +57,7 @@ function submitForm(event) {
   var date = formatDate(new Date(startTime));
   startTime = formatTime(new Date(startTime));
   endTime = formatTime(new Date(endTime));
-  available = "true"
+  available = [true, true, true, true, true, true, true, true];
 
   const newItem = {
     itemName: itemName,

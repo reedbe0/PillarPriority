@@ -1,12 +1,8 @@
-<script src = "timeslots.js" defer></script>
-<script src = "main.js" defer></script>
-<script>window.onload = printObj()</script>
-
 <body>
 
 <main id = "content">
     <h1 id = "selectedDate"></h1>
-    <button type = "button" class onclick = "window.location.href = 'calendar.html'">Back</button><br>
+    <button type = "button" class onclick = "window.location.href = './calendar'">Back</button><br>
     
     <!-- <button type = "button" id = "testing" onclick = "printObj()">Items</button> -->
     <table id = "timeslots">
@@ -29,3 +25,7 @@
 
 </main>
 </body>
+
+<script src = "main.js"></script>
+<script src = "timeslots.js"></script>
+<script>window.onload = loadItems()</script>

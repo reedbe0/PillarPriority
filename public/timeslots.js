@@ -1,6 +1,3 @@
-// const fs = require("fs")
-// const data = require("./db.json")
-
 var Timeslots = {
 	day: new Date().getDate(),
 
@@ -55,23 +52,24 @@ async function getData(file){
 async function printObj(){
 	var data = await getData("./db.json");
 	console.log(data);
-	console.log(data.items[0]);
-	console.log(data.items.length);
+	console.log(data[0]);
+	console.log(data.length);
 	table = document.getElementById("itemsList");
 	fullDate = localStorage.getItem("fullDateClicked");
 	console.log(fullDate)
-	console.log(data.items[0].date)
-	for(var i = 0; i < data.items.length;i++){
-		if (fullDate == data.items[i].date){
+	console.log(data[0].date)
+	let itemsShown = 0
+	for(var i = 0; i < data.length;i++){
+		if (fullDate == data[i].date){
 			var node = document.createElement("tr");
-			var textNode = document.createTextNode(data.items[i].name);
+			var textNode = document.createTextNode(data[i].itemName);
 			node.appendChild(textNode);
 			table.appendChild(node);
-			start = data.items[i].timeStart
+			start = data[i].startTime
 			console.log(start)
 			startArray = start.split(":")
 			console.log(startArray)
-			end = data.items[i].timeEnd
+			end = data[i].endTime
 			endArray = end.split(":")
 			console.log(endArray)
 			startCounter = 0;
@@ -80,10 +78,12 @@ async function printObj(){
 				let timeslot = document.createElement("li");
 				var timeText = document.createTextNode(j+ ":" + startArray[1] + "~" + (j+1) + ":" + startArray[1]);
 				// console.log(startTime)
-				console.log(data.items[i].available[startCounter])
+				console.log(data[i].available[startCounter])
 				space = document.createTextNode(": ")
-				if (data.items[i].available[startCounter] == true){
+				if (data[i].available[startCounter] == true){
 					availability = document.createElement("button")
+					availability.setAttribute("id", data[i].name + " " + j)
+					availability.setAttribute("class", "reserveButton")
 					buttonText = document.createTextNode("Reserve")
 					availability.appendChild(buttonText)
 				}
@@ -96,14 +96,62 @@ async function printObj(){
 				table.appendChild(timeslot)
 				startCounter += 1;
 			}
+			itemsShown += 1
+		}
+	}
+	if (itemsShown == 0){
+		let notice = document.createElement("tr")
+		let textNode = document.createTextNode("No Items Available on This Day")
+		notice.appendChild(textNode)
+		table.appendChild(notice)
+	}
+}
+
+
+async function loadItems(){
+	var data = await getData("./db.json");
+	await printObj()
+	button = document.getElementsByClassName("reserveButton")
+	for (let i = 0; i < button.length; i++){
+		console.log(button[i])
+		button[i].onclick = function(){
+			console.log("reserving " + button[i].id)
+			reserveItem = button[i].id.split(" ")
+			console.log(reserveItem)
+			var geneatedID = Math.floor(1000 + Math.random() * 9000);
+			console.log(geneatedID);
+			let itemIndex;
+			for (let j = 0; j < data.length;j++){
+				if (data[j].name == reserveItem[0]){
+					itemIndex = j;
+					break;
+				}
+			}
+			console.log("index " + itemIndex)
+			let timeStart = data[itemIndex].timeStart.split(":")
+			console.log(timeStart)
+			let timeIndex = (timeStart[0] - reserveItem[1]) * -1
+			data[itemIndex].available[timeIndex] = geneatedID
+			console.log(data[itemIndex].available[timeIndex])
+			localStorage.setItem("confirmationNumber", geneatedID)
+			// const fs = require('fs')
+
+			//write tot database
+
+
+			location.href = "confirm"
 
 		}
 	}
+
 }
+
+
+
 
 // printObj();
 
 var dateData = localStorage.getItem("fullDateClicked");
-if(!dateData) window.location.replace('./calendar');
+if(!dateData) location.replace("calendar.html");
 var date = new Date(dateData);
 selectedDate.innerText += date.display("long");
