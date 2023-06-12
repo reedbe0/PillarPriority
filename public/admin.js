@@ -39,7 +39,7 @@ function populateTable() {
         row.appendChild(availabilityCell);
 
         const actionsCell = document.createElement("tr");
-        actionsCell.innerHTML = '<button onclick="">Delete</button>';
+        actionsCell.innerHTML = `<button onclick="deleteItem(${i})">Delete</button>`;
         row.appendChild(actionsCell);
         const actionsCell2 = document.createElement("tr");
         actionsCell2.innerHTML = '<button onclick="">Change</button>';
@@ -82,14 +82,11 @@ function submitForm(event) {
     .then((response) => response.text())
     .then((message) => {
       console.log("Server response:", message);
-      // window.location.replace('./calendar');
+      location.reload();
     })
     .catch((error) => {
       console.error("Error writing to JSON data:", error);
     });
-
-  console.log(newItem);
-  location.reload();
 }
 
 function formatDate(date) {
@@ -103,6 +100,23 @@ function formatTime(date) {
   const hours = date.getHours().toString().padStart(2, "0"); //3:00 -> 03:00
   const minutes = date.getMinutes().toString().padStart(2, "0");
   return hours + ":" + minutes;
+}
+
+function deleteItem(index) {
+  fetch(`/delete/${index}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.text())
+    .then((message) => {
+      console.log("Server response:", message);
+      location.reload();
+    })
+    .catch((error) => {
+      console.error("Error deleting item:", error);
+    });
 }
 
 populateTable();
