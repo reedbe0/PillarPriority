@@ -59,6 +59,7 @@ function populateTable() {
         const startHour = parseInt(item.startTime.split(":")[0]);
         const endHour = parseInt(item.endTime.split(":")[0]);
 
+        let timeIdx = 0;
         for (let j = startHour; j < endHour; j++) {
           const availabilityEntryRow = document.createElement("tr");
 
@@ -73,6 +74,13 @@ function populateTable() {
             : "Reserved";
           availabilityEntryRow.appendChild(availabilityEntryCell);
 
+          if (item.available[j - startHour] == false) {
+            const availBtn = document.createElement("td");
+            availBtn.innerHTML = `<button onclick="removeReservation(${i}, ${timeIdx})" class="actionBtn">Clear Reservation</button>`;
+            availabilityEntryRow.appendChild(availBtn);
+          }
+          timeIdx++;
+
           availabilityTable.appendChild(availabilityEntryRow);
         }
 
@@ -85,6 +93,7 @@ function populateTable() {
     .catch((error) => {
       console.error("Error:", error);
     });
+  return;
 }
 
 function toggleCollapse(event) {
@@ -270,6 +279,63 @@ function populateHoursDropdown() {
     startTimeSelect.appendChild(startTimeOption);
     endTimeSelect.appendChild(endTimeOption);
   }
+}
+
+async function removeReservation(itemIndex, timeIndex) {
+  let data = await getData("./db.json");
+
+  // console.log(timeIndex)
+
+  const newavailable = data[itemIndex].available;
+  newavailable[timeIndex] = true;
+
+  const newdata = {
+    index: itemIndex,
+    itemName: data[itemIndex].itemName,
+    date: data[itemIndex].date,
+    startTime: data[itemIndex].startTime,
+    endTime: data[itemIndex].endTime,
+    available: newavailable,
+  };
+
+  const codeDBData = {
+    geneatedID: Number(0),
+    timeIndex: Number(timeIndex),
+    itemIndex: Number(itemIndex),
+  };
+
+  fetch("/update_db", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newdata),
+  })
+    .then((response) => response.text())
+    .then((message) => {
+      console.log("Server response:", message);
+    })
+    .catch((error) => {
+      console.error("Error writing to JSON data:", error);
+    });
+
+  fetch("/remove_codedb", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(codeDBData),
+  })
+    .then((response) => response.text())
+    .then((message) => {
+      console.log("Server response:", message);
+    })
+    .catch((error) => {
+      console.error("Error writing to JSON data:", error);
+    });
+
+  alert("Sucessfully removed reservation");
+  location.href = "/admin";
 }
 
 populateHoursDropdown();
