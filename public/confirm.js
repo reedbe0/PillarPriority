@@ -51,6 +51,12 @@ async function removeReservation(){
 		available: newavailable
 	};
 
+	const codeDBData = {
+		geneatedID: Number(confirmNum),
+		timeIndex: Number(timeIndex),
+		itemIndex: Number(itemIndex)
+	}
+
 	fetch('/update_db', {
 				method: 'POST',
 				headers: {
@@ -66,6 +72,21 @@ async function removeReservation(){
 		console.error('Error writing to JSON data:', error);
 	});
 
+	fetch('/remove_codedb', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(codeDBData)
+	})
+	.then(response => response.text())
+	.then(message => {
+		console.log('Server response:', message);
+	})
+	.catch(error => {
+		console.error('Error writing to JSON data:', error);
+	});
+	
 	alert("Sucessfully removed reservation")
 	location.href = "index"
 }

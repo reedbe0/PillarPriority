@@ -6,7 +6,7 @@
     "endTime": "20:00",
     "available": [
       false,
-      false,
+      true,
       false,
       false,
       true,

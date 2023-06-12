@@ -305,6 +305,59 @@ app.post("/update_db", (req, res) => {
   });
 });
 
+app.post("/remove_codedb", (req, res) => {
+  const inputData = {
+    geneatedID: req.body.geneatedID,
+    timeIndex: req.body.timeIndex,
+    itemIndex: req.body.itemIndex,
+  };
+
+  fs.readFile("./public/codedb.json", "utf8", (err, data) => {
+    if (err) {
+      console.error("Error reading JSON file:", err);
+      res.status(500).send("Internal Server Error");
+      return;
+    }
+
+    let jsonData = [];
+    try {
+      jsonData = JSON.parse(data);
+    } catch (parseError) {
+      console.error("Error parsing JSON:", parseError);
+      res.status(500).send("Internal Server Error");
+      return;
+    }
+
+    if (!Array.isArray(jsonData)) {
+      console.error("Existing data is not an array");
+      res.status(500).send("Internal Server Error");
+      return;
+    }
+    // console.log(jsonData)
+    jsonData.push(inputData);
+
+    let jsonDataRemoved = []
+    for(let i = 0; i < jsonData.length;i++){
+        if (jsonData[i].geneatedID != inputData.geneatedID){
+            jsonDataRemoved.push(jsonData[i])
+        }
+    }
+
+    const jsonString = JSON.stringify(jsonDataRemoved, null, 2);
+
+    fs.writeFile("./public/codedb.json", jsonString, "utf-8", (err) => {
+      if (err) {
+        console.error("Error writing to JSON file:", err);
+        res.status(500).send("Internal Server Error");
+        return;
+      }
+
+      res.send("JSON file successfully!");
+    });
+  });
+});
+
+
 app.delete("/delete/:id", (req, res) => {
   const index = parseInt(req.params.id);
 
