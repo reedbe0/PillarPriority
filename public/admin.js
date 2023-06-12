@@ -258,6 +258,7 @@ function submitEdit() {
     .catch((error) => {
       console.error("Error writing to JSON data:", error);
     });
+    location.href = "/admin";
 }
 
 function populateHoursDropdown() {
