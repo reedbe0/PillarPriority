@@ -61,11 +61,11 @@ async function login() {
 		else{
 			console.log("code: " + code_var + " email: " + email_var);
 		}
+		let done = false
 		if (Number(code_var) != 0){
 			console.log("user inputted a code")
 			let coded_db = await getData("codedb.json");
 			let existing_user = false;
-			let done = false
 			let timeIndex;
 			let itemIndex;
 			for(let i = 0; i < coded_db.length;i++){
