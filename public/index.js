@@ -38,6 +38,14 @@ async function getData_User(){
 	return items
 }
 
+async function getData(file){
+	let database = await fetch(file);
+	let items = await database.json();
+	// console.log(items)
+	return items
+
+}
+
 async function login() {
 	var user_data = await getData_User();
 	var admin_data = await getData_Admin();
@@ -45,13 +53,52 @@ async function login() {
 	if (tab == 1) {
 		var code_var = document.getElementById('code').value;
 		var email_var = document.getElementById('userEmail').value;
+		console.log(Number(code_var))
+		console.log(email_var)
 		if (email_var == null) {
 			console.log("error user, invalid input");
 		}
-		else {
+		else{
 			console.log("code: " + code_var + " email: " + email_var);
 		}
-		
+		if (Number(code_var) != 0){
+			console.log("user inputted a code")
+			let coded_db = await getData("codedb.json");
+			let existing_user = false;
+			let done = false
+			let timeIndex;
+			let itemIndex;
+			for(let i = 0; i < coded_db.length;i++){
+				// console.log(Number(code_var))
+				// console.log(coded_db[i].geneatedID)
+				if (coded_db[i].geneatedID == Number(code_var)){
+					existing_user = true
+					timeIndex = coded_db[i].timeIndex
+					itemIndex = coded_db[i].itemIndex
+					done = true
+					break
+				}
+			}
+			done = true
+			if(existing_user == true){
+				localStorage.setItem("confirmationNumber", code_var)
+				localStorage.setItem("confirmationTimeIndex", timeIndex)
+				localStorage.setItem("itemIndex", itemIndex)
+				window.location = './confirm'
+			}
+			else{
+				alert("Invalid code. Please try again.")
+				return
+			}
+		}
+		function checkFlag() {
+		    if(done === false) {
+		       window.setTimeout(checkFlag, 100); /* this checks the flag every 100 milliseconds*/
+		    }
+		}
+		checkFlag();
+
+
 		const newdata = {userEmail: email_var, code: code_var};
 
 		fetch('/write_user', {
@@ -64,7 +111,7 @@ async function login() {
 		.then(response => response.text())
 		.then(message => {
 			console.log('Server response:', message);
-			window.location.replace('./calendar');
+			window.location = ('./calendar');
 		})
 		.catch(error => {
 			console.error('Error writing to JSON data:', error);
