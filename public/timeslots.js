@@ -36,7 +36,7 @@ var Timeslots = {
 	}
 }
 
-Timeslots.init();
+// Timeslots.init();
 
 // import items from './db.json' assert {type:'json'};
 
