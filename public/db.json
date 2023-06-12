@@ -1,21 +1,5 @@
 [
   {
-    "itemName": "Computer",
-    "date": "6/28/23",
-    "startTime": "8:00",
-    "endTime": "16:00",
-    "available": [
-      false,
-      true,
-      false,
-      false,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  {
     "itemName": "iPad",
     "date": "6/27/23",
     "startTime": "10:00",
@@ -26,9 +10,9 @@
       false,
       false,
       false,
-      false,
-      false,
-      false
+      true,
+      true,
+      true
     ]
   },
   {
@@ -36,6 +20,22 @@
     "date": "7/12/23",
     "startTime": "19:26",
     "endTime": "19:26",
+    "available": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "itemName": "item",
+    "date": "6/20/23",
+    "startTime": "21:39",
+    "endTime": "21:39",
     "available": [
       true,
       true,
