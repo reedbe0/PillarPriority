@@ -20,7 +20,7 @@ button {
   transition: background 0.2s;
 }
 
-header {
+.header {
   text-align: center;
   background: var(--accent);
   color: white;
@@ -35,7 +35,7 @@ h1 {
   font-weight: normal;
 }
 
-header > h1 {
+.header > h1 {
   margin: 0;
   font-style: italic;
 }
@@ -101,7 +101,7 @@ header > h1 {
   cursor: default;
 }
 
-footer > p {
+.footer > p {
   text-align: center;
   background: var(--accent);
   color: white;
