@@ -155,10 +155,10 @@ function changeItem(index) {
   .catch(error => {
     console.error('Error:', error);
   });
-  document.getElementById("item-name").innerText = itemName_global;
-  document.getElementById("date").innerText = date_global;
-  document.getElementById("start_time").innerText = startTime_global;
-  document.getElementById("end_time").innerText = endTime_global;
+  document.getElementById("item-name").value = itemName_global;
+  document.getElementById("date_edit").value = date_global;
+  document.getElementById("start_time").value = startTime_global;
+  document.getElementById("end_time").value = endTime_global;
   var j = 1
   for (let i = 0; i < available_global.length; i++) {
     document.getElementById(`btn${j}`).checked = available_global[i]
@@ -172,6 +172,11 @@ function updateCheck(index) {
 }
 
 function submitEdit(){
+  itemName_global = document.getElementById("item-name").value;
+  date_global = document.getElementById("date_edit").value;
+  startTime_global = document.getElementById("start_time").value;
+  endTime_global = document.getElementById("end_time").value;
+  
   const newdata = {
     index: index_global,
     itemName: itemName_global,

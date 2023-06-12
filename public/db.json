@@ -1,15 +1,15 @@
 [
   {
-    "itemName": "iPad",
-    "date": "6/27/23",
-    "startTime": "10:00",
-    "endTime": "18:00",
+    "itemName": "iPad2",
+    "date": "6/27/24",
+    "startTime": "12:00",
+    "endTime": "20:00",
     "available": [
       false,
       false,
       false,
       false,
-      false,
+      true,
       true,
       true,
       true
