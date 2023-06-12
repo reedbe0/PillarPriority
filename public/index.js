@@ -85,6 +85,7 @@ async function login() {
 				localStorage.setItem("confirmationTimeIndex", timeIndex)
 				localStorage.setItem("itemIndex", itemIndex)
 				window.location = './confirm'
+				return
 			}
 			else{
 				alert("Invalid code. Please try again.")
@@ -93,10 +94,10 @@ async function login() {
 		}
 		function checkFlag() {
 		    if(done === false) {
-		       window.setTimeout(checkFlag, 100); /* this checks the flag every 100 milliseconds*/
+		       window.setTimeout(checkFlag, 2000); /* this checks the flag every 100 milliseconds*/
 		    }
 		}
-		checkFlag();
+		 checkFlag();
 
 
 		const newdata = {userEmail: email_var, code: code_var};
