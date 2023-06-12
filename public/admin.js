@@ -203,15 +203,16 @@ function changeItem(index) {
       document.getElementById("date_edit").value = date_global;
       document.getElementById("start_time").value = startTime_global;
       document.getElementById("end_time").value = endTime_global;
+
+      var j = 1;
+      for (let i = 0; i < available_global.length; i++) {
+        document.getElementById(`btn${j}`).checked = available_global[i];
+        j = j + 1;
+      }
     })
     .catch((error) => {
       console.error("Error:", error);
     });
-  var j = 1;
-  for (let i = 0; i < available_global.length; i++) {
-    document.getElementById(`btn${j}`).checked = available_global[i];
-    j = j + 1;
-  }
 }
 
 function updateCheck(index) {
