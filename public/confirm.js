@@ -88,5 +88,5 @@ async function removeReservation(){
 	});
 	
 	alert("Sucessfully removed reservation")
-	location.href = "index"
+	location.href = "/"
 }
