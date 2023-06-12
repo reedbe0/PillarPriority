@@ -53,16 +53,35 @@ function populateTable() {
     });
 }
 
+function convertToMilitaryTime(time) {
+  const [hours, minutes] = time.split(/:| /);
+  const ampm = time.substring(time.length - 2);
+  let militaryHours = parseInt(hours);
+
+  if (ampm == "PM" && hours != 12) {
+    militaryHours += 12;
+  }
+  return `${militaryHours}:00`;
+}
+
 function submitForm(event) {
   event.preventDefault();
 
-  var itemName = document.getElementById("addItem").value;
-  var startTime = document.getElementById("start-time").value;
-  var endTime = document.getElementById("end-time").value;
-  var date = formatDate(new Date(startTime));
-  startTime = formatTime(new Date(startTime));
-  endTime = formatTime(new Date(endTime));
-  available = [true, true, true, true, true, true, true, true];
+  const itemName = document.getElementById("addItem").value;
+  const startTime = convertToMilitaryTime(
+    document.getElementById("start").value
+  );
+  const endTime = convertToMilitaryTime(document.getElementById("end").value);
+  const availDate = document.getElementById("date").value;
+  const date = formatDate(new Date(availDate));
+
+  let available = [];
+  const startHour = parseInt(startTime.split(":")[0]);
+  const endHour = parseInt(endTime.split(":")[0]);
+
+  for (let i = startHour; i < endHour; i++) {
+    available.push(true);
+  }
 
   const newItem = {
     itemName: itemName,
@@ -96,12 +115,6 @@ function formatDate(date) {
   return month + "/" + day + "/" + year;
 }
 
-function formatTime(date) {
-  const hours = date.getHours().toString().padStart(2, "0"); //3:00 -> 03:00
-  const minutes = date.getMinutes().toString().padStart(2, "0");
-  return hours + ":" + minutes;
-}
-
 function deleteItem(index) {
   fetch(`/delete/${index}`, {
     method: "DELETE",
@@ -119,4 +132,26 @@ function deleteItem(index) {
     });
 }
 
+function populateHoursDropdown() {
+  const startTimeSelect = document.getElementById("start");
+  const endTimeSelect = document.getElementById("end");
+
+  for (let i = 8; i <= 16; i++) {
+    const hour = i < 12 ? i : i === 12 ? i : i - 12;
+    const ampm = i < 12 ? "AM" : "PM";
+
+    const startTimeOption = document.createElement("option");
+    startTimeOption.text = `${hour}:00 ${ampm}`;
+    startTimeOption.value = `${hour}:00 ${ampm}`;
+
+    const endTimeOption = document.createElement("option");
+    endTimeOption.text = `${hour}:00 ${ampm}`;
+    endTimeOption.value = `${hour}:00 ${ampm}`;
+
+    startTimeSelect.appendChild(startTimeOption);
+    endTimeSelect.appendChild(endTimeOption);
+  }
+}
+
+populateHoursDropdown();
 populateTable();

@@ -1,14 +1,16 @@
-<script src="/admin.js"></script>
+<script src="/admin.js" defer></script>
 <body>
   <div class="box">
     <div class="boxTitle">Add Items</div>
     <form class="adminForm" onsubmit="submitForm(event)">
       <div class="test">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" />
         <div class="time-selection">
-          <label for="start-time">Start Time:</label>
-          <input type="datetime-local" id="start-time" name="end-time" />
-          <label for="end-time">End Time:</label>
-          <input type="datetime-local" id="end-time" name="end-time" />
+          <label for="start">Start Time:</label>
+          <select id="start" name="start"></select>
+          <label for="end">End Time:</label>
+          <select id="end" name="end"></select>
         </div>
         <div class="name-select">
           <input type="text" id="addItem" placeholder="Item Name" />
