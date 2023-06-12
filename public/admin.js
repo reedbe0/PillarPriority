@@ -42,7 +42,7 @@ function populateTable() {
         actionsCell.innerHTML = `<button onclick="deleteItem(${i})">Delete</button>`;
         row.appendChild(actionsCell);
         const actionsCell2 = document.createElement("tr");
-        actionsCell2.innerHTML = '<button onclick="">Change</button>';
+        actionsCell2.innerHTML = `<button onclick="changeItem(${i})">Change</button>`;
         row.appendChild(actionsCell2);
 
         itemList.appendChild(row);
@@ -130,6 +130,71 @@ function deleteItem(index) {
     .catch((error) => {
       console.error("Error deleting item:", error);
     });
+}
+
+let itemName_global = "";
+let date_global = "";
+let startTime_global = "";
+let endTime_global = "";
+let available_global = [];
+let index_global = 0
+
+function changeItem(index) {
+  console.log(index);
+  index_global = index;
+  fetch('/read_db')
+  .then(response => response.json())
+  .then(object => {
+    console.log(object[index]);
+    itemName_global = object[index].itemName;
+    date_global = object[index].date;
+    startTime_global = object[index].startTime;
+    endTime_global = object[index].endTime;
+    available_global = object[index].available;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+  document.getElementById("item-name").innerText = itemName_global;
+  document.getElementById("date").innerText = date_global;
+  document.getElementById("start_time").innerText = startTime_global;
+  document.getElementById("end_time").innerText = endTime_global;
+  var j = 1
+  for (let i = 0; i < available_global.length; i++) {
+    document.getElementById(`btn${j}`).checked = available_global[i]
+    j = j + 1;
+  }
+}
+
+function updateCheck(index) {
+  btn_index = index + 1;
+  available_global[index] = document.getElementById(`btn${btn_index}`).checked
+}
+
+function submitEdit(){
+  const newdata = {
+    index: index_global,
+    itemName: itemName_global,
+    date: date_global,
+    startTime: startTime_global,
+    endTime: endTime_global,
+    available: available_global
+  };
+  
+  fetch('/update_db', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newdata)
+  })
+  .then(response => response.text())
+  .then(message => {
+    console.log('Server response:', message);
+  })
+  .catch(error => {
+    console.error('Error writing to JSON data:', error);
+  });
 }
 
 function populateHoursDropdown() {

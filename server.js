@@ -326,6 +326,23 @@ app.get("/newAdmin", function (req, res) {
   res.status(200).render("./partials/newAdmin");
 });
 
+app.get("/change", function (req, res) {
+  res.status(200).render("./partials/change");
+});
+
+app.get("/read_db", (req, res) => {
+  fs.readFile("./public/db.json", "utf8", (err, data) => {
+    if (err) {
+      console.error("Error reading JSON file:", err);
+      res.status(500).send("Internal Server Error");
+      return;
+    }
+
+    // Send the JSON data to the browser
+    res.send(data);
+  });
+});
+
 app.listen(port, function () {
   console.log("== Server is listening on port", port);
 });
