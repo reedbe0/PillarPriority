@@ -336,11 +336,11 @@ app.post("/remove_codedb", (req, res) => {
     // console.log(jsonData)
     jsonData.push(inputData);
 
-    let jsonDataRemoved = []
-    for(let i = 0; i < jsonData.length;i++){
-        if (jsonData[i].geneatedID != inputData.geneatedID){
-            jsonDataRemoved.push(jsonData[i])
-        }
+    let jsonDataRemoved = [];
+    for (let i = 0; i < jsonData.length; i++) {
+      if (jsonData[i].geneatedID != inputData.geneatedID) {
+        jsonDataRemoved.push(jsonData[i]);
+      }
     }
 
     const jsonString = JSON.stringify(jsonDataRemoved, null, 2);
@@ -357,12 +357,18 @@ app.post("/remove_codedb", (req, res) => {
   });
 });
 
-
 app.delete("/delete/:id", (req, res) => {
   const index = parseInt(req.params.id);
 
   const jsonData = fs.readFileSync("./public/db.json", "utf8");
   const data = JSON.parse(jsonData);
+
+  const indexData = fs.readFileSync("./public/codedb.json", "utf8");
+  let indexes = JSON.parse(indexData);
+
+  indexes = indexes.filter((item) => item.itemIndex !== index);
+
+  fs.writeFileSync("./public/codedb.json", JSON.stringify(indexes));
 
   if (index >= 0 && index < data.length) {
     data.splice(index, 1);

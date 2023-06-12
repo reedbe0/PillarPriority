@@ -18,6 +18,11 @@ button {
   border: none;
   cursor: pointer;
   transition: background 0.2s;
+  padding: 10px 20px;
+}
+
+button:hover {
+  background: var(--dark-gray);
 }
 
 .header {
@@ -146,8 +151,6 @@ h1 {
 .adminForm {
   margin-top: 20px;
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 #addItem {
@@ -169,10 +172,6 @@ ul.horizontal-list li {
 
 .time-selection {
   display: flex;
-  justify-content: center;
-  align-items: center;
-
-  margin: 10px;
 }
 
 .time-selection label {
@@ -203,15 +202,16 @@ ul.horizontal-list li {
   border-bottom: 1px solid #ccc;
 }
 
-.name-select {
-  margin: 0 auto;
-  display: flex;
+.test {
+  margin: 50px;
 }
 
-.test {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.actionBtn {
+  margin: 0 10px;
+}
+
+.test input {
+  margin: 20px 0;
 }
 
 .loginBox {
