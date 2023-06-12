@@ -338,7 +338,7 @@ app.post("/remove_codedb", (req, res) => {
 
     let jsonDataRemoved = [];
     for (let i = 0; i < jsonData.length; i++) {
-      if (jsonData[i].geneatedID != inputData.geneatedID) {
+      if (jsonData[i].timeIndex != inputData.timeIndex && jsonData[i].itemIndex != inputData.timeIndex) {
         jsonDataRemoved.push(jsonData[i]);
       }
     }
